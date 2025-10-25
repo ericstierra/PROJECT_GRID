@@ -1,0 +1,123 @@
+/* Import a Google Font */
+@import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
+
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Tiktok Sans', sans-serif;
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+.wrapper {
+    display: flex;
+}
+
+.main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+    background-color: #f8f9fa;
+}
+
+#sidebar {
+    width: 70px;
+    min-width: 70px;
+    z-index: 1000;
+    height: 100vh;
+    transition: all 0.25s ease-in-out;
+    background-color: #212529; /* Dark sidebar */
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #495057;
+}
+
+#sidebar.expand {
+    width: 260px;
+    min-width: 260px;
+}
+
+.sidebar-logo {
+    padding: 1.15rem 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.sidebar-logo a {
+    color: #f8f9fa; /* Light text for logo */
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-header {
+    padding: 1rem 1.5rem;
+    font-size: .75rem;
+    color: #adb5bd; /* Muted light text for headers */
+}
+
+.sidebar-link {
+    padding: .625rem 1.625rem;
+    color: #ced4da; /* Standard light link color */
+    position: relative;
+    display: block;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.sidebar-link:hover {
+    background-color: #343a40;
+    color: #0d6efd; /* Primary color on hover */
+}
+
+.sidebar-link.active {
+    background-color: rgba(13, 110, 253, 0.1); /* Light primary background for active */
+    color: #0d6efd;
+    border-left: 3px solid #0d6efd;
+}
+
+/* When sidebar is collapsed */
+#sidebar:not(.expand) .sidebar-nav .sidebar-item .sidebar-link {
+    justify-content: center;
+}
+
+#sidebar:not(.expand) .sidebar-nav .sidebar-header,
+#sidebar:not(.expand) .sidebar-nav .sidebar-item .sidebar-link span,
+#sidebar:not(.expand) .sidebar-logo span {
+    display: none;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #fff;
+}
+
+.navbar-toggler-icon {
+    cursor: pointer;
+}
+
+.avatar {
+    height: 40px;
+    width: 40px;
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+    #sidebar {
+        margin-left: -70px; /* Start with the collapsed width hidden */
+    }
+    #sidebar.expand {
+        width: 260px;
+        min-width: 260px;
+        margin-left: 0; /* Bring it into view when expanded */
+    }
+}
