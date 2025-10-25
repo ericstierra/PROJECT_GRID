@@ -1,7 +1,11 @@
-document.addEventListener("DOMContentLoaded", function() {
+function initializeDashboardCharts() {
     // Chart 1: Incidents by Type (Bar Chart)
     const incidentTypeCtx = document.getElementById('incidentTypeChart');
     if (incidentTypeCtx) {
+        // Destroy existing chart instance if it exists, to prevent memory leaks
+        if (Chart.getChart(incidentTypeCtx)) {
+            Chart.getChart(incidentTypeCtx).destroy();
+        }
         new Chart(incidentTypeCtx, {
             type: 'bar',
             data: {
@@ -48,6 +52,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // Chart 2: Incidents by Barangay (Horizontal Bar Chart)
     const incidentBarangayCtx = document.getElementById('incidentBarangayChart');
     if (incidentBarangayCtx) {
+        // Destroy existing chart instance if it exists
+        if (Chart.getChart(incidentBarangayCtx)) {
+            Chart.getChart(incidentBarangayCtx).destroy();
+        }
         const barangays = [
             'Angeles', 'Balubad', 'Balugohin', 'Zone 1', 'Zone 2', 'Zone 3', 'Zone 4',
             'Buhangin', 'Caridad Ibaba', 'Caridad Ilaya', 'Habingan', 'Inaclagan', 'Inalig',
@@ -88,4 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-});
+}
+
+// Run the initialization function
+initializeDashboardCharts();
