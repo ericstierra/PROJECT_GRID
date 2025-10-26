@@ -16,3 +16,10 @@ body {
    color: #ffffff;
    border-color:hsl(0, 70%, 36%) ;
  }
+
+ h1 {
+    font-weight: 600;
+    font-size: 1.7rem;
+    color: #333333;
+    margin-bottom: 1rem;
+ }
