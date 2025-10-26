@@ -12,7 +12,7 @@ body {
  }
 
  button:hover {
-   background-color: hsl(217, 70%, 36%);
+   background-color: hsl(0, 80%, 40%);
    color: #ffffff;
+   border-color:hsl(0, 70%, 36%) ;
  }
-
