@@ -31,7 +31,7 @@ body {
     z-index: 1000;
     height: 100vh;
     transition: all 0.25s ease-in-out;
-    background-color: #2a2f33; /* Dark sidebar */
+    background-color:#082237; /* Dark sidebar */
     display: flex;
     flex-direction: column;
     border-right: 1px solid #495057;
@@ -98,7 +98,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color:#41768f;
+    background-color:#faf9f9;
 }
 
 .navbar-toggler-icon {

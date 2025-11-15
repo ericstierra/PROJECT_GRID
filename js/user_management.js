@@ -2,8 +2,8 @@ const form = document.getElementById('addUserForm');
 const userTableBody = document.getElementById('userTableBody');
 
     // Add User Form Submit
-form.addEventListener('submit', function (e) {
-e.preventDefault();
+  form.addEventListener('submit', function (e) {
+  e.preventDefault();
 
 const fullName = document.getElementById('fullName').value;
 const userType = document.getElementById('userType').value;
@@ -11,15 +11,15 @@ const status = document.getElementById('status').value;
 
       // Create table row
 const tr = document.createElement('tr');
-tr.innerHTML = `
-<td>${fullName}</td>
-<td>${userType}</td>
-<td><span class="badge ${status === 'Active' ? 'bg-success' : 'bg-secondary'}">${status}</span></td>
-<td class="action-btns">
-<button class="btn btn-sm btn-warning edit-btn">Edit</button>
-<button class="btn btn-sm btn-danger delete-btn">Delete</button>
-</td>
-`;
+      tr.innerHTML = `
+      <td>${fullName}</td>
+      <td>${userType}</td>
+      <td><span class="badge ${status === 'Active' ? 'bg-success' : 'bg-secondary'}">${status}</span></td>
+      <td class="action-btns">
+      <button class="btn btn-sm btn-warning edit-btn">Edit</button>
+      <button class="btn btn-sm btn-danger delete-btn">Delete</button>
+      </td>
+      `;
 
       // Append row to table
 userTableBody.appendChild(tr);
