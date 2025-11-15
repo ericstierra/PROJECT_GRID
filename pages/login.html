@@ -56,7 +56,8 @@
 
                         <h5 class="fw-normal mb-3 text-center">Sign into your account</h5>
 
-                        <form action="">
+                        <!-- Login Form -->
+                        <form action="#" method="POST" id="login-form" >
                             <div class="mb-3">
                                 <label for="username" class="form-label visually-hidden">Username</label>
                                 <div class="input-group">
@@ -72,8 +73,8 @@
                                 </div>
                             </div>
                             <div class="d-grid mb-4">
-                                <!--<button type="submit" class="btn btn-primary btn-lg">Login</button>-->
-                                <a href="app.html" role="button" class="btn btn-primary btn-lg">Login</a>
+                                <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                                <!-- <a href="app.html" role="button" class="btn btn-primary btn-lg">Login</a> -->
                             </div>
                         </form>
 
@@ -93,6 +94,76 @@
             </div>
         </div>
 
+        <!-- Toast container for notifications -->
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/images/pgrid_logo.png" class="rounded me-2" alt="Logo" style="width: 20px;">
+                    <strong class="me-auto">Project GRID</strong>
+                    <small>Just now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body"></div>
+            </div>
+        </div>
+
         <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <script>
+            // Login Form Validation
+        const form = document.querySelector('#login-form');
+        const liveToast = document.querySelector('#liveToast');
+        const toastBootstrap = new bootstrap.Toast(liveToast);
+        const errorMessage = liveToast.querySelector('.toast-body');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            //remove whitespace from inputs
+            const username = form.querySelector('#username').value.trim();
+            const password = form.querySelector('#password').value.trim();
+
+            //check if inputs selected are valid
+            const patterns = {
+                username: /^[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, //simple email regex
+                password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_=+\\\[\]{};:'",.<>\/?]).{8,}$/ //min 8 chars, at least one uppercase, one lowercase, one number and one special character
+            };
+
+            if (username === '' || password === '') {
+                errorMessage.textContent = 'Please fill in all fields.';
+                toastBootstrap.show();
+                //alert('Please fill in all fields.');
+                return;
+            }
+
+            if (!patterns.username.test(username)) {
+                errorMessage.textContent = 'Please enter a valid email address.';
+                toastBootstrap.show();
+                //alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (!patterns.password.test(password)) {
+                errorMessage.textContent = 'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.';
+                toastBootstrap.show();
+                //alert('Please enter a valid password.');
+                return;
+            }
+
+            //alert('Login successful!');
+
+            errorMessage.textContent = 'Login successful!';
+            toastBootstrap.show();
+
+            setTimeout(() => {
+                window.location.href = 'app.html';
+            }, 1500);
+
+            //for demo, just log to console
+            console.log('Username:', patterns.username.test(username) ? 'Valid' : 'Invalid');
+            console.log('Password:', password);
+
+        });
+    </script>
+
     </body>
 </html>
