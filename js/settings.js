@@ -9,6 +9,7 @@
         document.getElementById("barangayName").value = "";
     }
 
+
     function saveBarangay() {
         const name = document.getElementById("barangayName").value;
 

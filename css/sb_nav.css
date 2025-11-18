@@ -98,7 +98,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color:#e5e5e5;
+    background-color:#6291a7;/* Slightly lighter than sidebar */
 }
 
 .navbar-toggler-icon {
