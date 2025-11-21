@@ -76,7 +76,8 @@ body {
 
 .sidebar-link:hover {
     background-color: #5c748d;
-    color: #152948; /* Primary color on hover */
+    color: #152948;
+    /* Primary color on hover */
 }
 
 .sidebar-link.active {
