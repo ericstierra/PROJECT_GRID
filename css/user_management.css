@@ -53,3 +53,17 @@ table {
 .action-btns button {
    margin-right: 5px;
 }
+
+.fade-header {
+  opacity: 0;
+  animation: fadeHeader 1s forwards;
+}
+
+@keyframes fadeHeader {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

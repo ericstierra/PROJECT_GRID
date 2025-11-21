@@ -9,8 +9,10 @@
   animation: moveRight 0.5s linear;
 }
 @keyframes moveRight {
-  from { transform: translateX(200px); }
-  to   { transform: translateX(0); }
+  from { transform: translateX(200px); 
+        opacity: 0;}
+  to   { transform: translateX(0); 
+        opacity: 1; }
 }
 
 /* Top → Bottom */
@@ -18,8 +20,21 @@
   animation: moveDown 0.5s linear;
 }
 @keyframes moveDown {
-  from { transform: translateY(-200px); }
-  to   { transform: translateY(0); }
+  from { transform: translateY(-200px);
+        opacity: 0; }
+  to   { transform: translateY(0); 
+        opacity: 1; }
+}
+
+/* Bottom → Top */
+.move-up {
+  animation: moveUp 0.5s linear;
+}
+@keyframes moveUp {
+  from { transform: translateY(200px); 
+        opacity: 0;}
+  to   { transform: translateY(0); 
+        opacity: 1; }
 }
 
 /* Right → Left */
@@ -27,6 +42,22 @@
   animation: moveLeft 0.5s linear;
 }
 @keyframes moveLeft {
-  from { transform: translateX(-200px); }
-  to   { transform: translateX(0); }
+  from { transform: translateX(-200px); 
+        opacity: 0; }
+  to   { transform: translateX(0); 
+        opacity: 1; }
+}
+
+.fade-header {
+  opacity: 0;
+  animation: fadeHeader 1s forwards;
+}
+
+@keyframes fadeHeader {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
