@@ -1,0 +1,32 @@
+/* Left → Right */
+.box {
+  margin: 20px;
+  position: relative;
+}
+
+/* Left → Right */
+.move-right {
+  animation: moveRight 0.5s linear;
+}
+@keyframes moveRight {
+  from { transform: translateX(200px); }
+  to   { transform: translateX(0); }
+}
+
+/* Top → Bottom */
+.move-down {
+  animation: moveDown 0.5s linear;
+}
+@keyframes moveDown {
+  from { transform: translateY(-200px); }
+  to   { transform: translateY(0); }
+}
+
+/* Right → Left */
+.move-left {
+  animation: moveLeft 0.5s linear;
+}
+@keyframes moveLeft {
+  from { transform: translateX(-200px); }
+  to   { transform: translateX(0); }
+}
