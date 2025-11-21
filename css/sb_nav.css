@@ -31,7 +31,7 @@ body {
     z-index: 1000;
     height: 100vh;
     transition: all 0.25s ease-in-out;
-    background-color: #2a2f33; /* Dark sidebar */
+    background-color:#082237; /* Dark sidebar */
     display: flex;
     flex-direction: column;
     border-right: 1px solid #495057;
@@ -66,7 +66,7 @@ body {
 
 .sidebar-link {
     padding: .625rem 1.625rem;
-    color: #ced4da; /* Standard light link color */
+    color: #458B81; /* Standard light link color */
     position: relative;
     display: block;
     font-size: 0.9rem;
@@ -75,8 +75,8 @@ body {
 }
 
 .sidebar-link:hover {
-    background-color: #343a40;
-    color: #0d6efd; /* Primary color on hover */
+    background-color: #5c748d;
+    color: #152948; /* Primary color on hover */
 }
 
 .sidebar-link.active {
@@ -98,8 +98,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color: #ffffff;
-    
+    background-color:#6291a7;/* Slightly lighter than sidebar */
 }
 
 .navbar-toggler-icon {

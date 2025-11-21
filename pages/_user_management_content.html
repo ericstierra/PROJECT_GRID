@@ -2,12 +2,12 @@
  <link rel="stylesheet" href="../css/user_management.css">
   <div class="d-flex justify-content-between align-items-center mb-0">
     <h2 class="h3 mb-0">User Management</h2>
-     <button type="button" class="btn btn-primary btn-add" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="bi bi-plus-lg"> Add</i></button> 
+     <button type="button" class="btn bg-success btn-add shadow text-success-subtle" data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="bi bi-plus-lg"> Add</i></button> 
   </div>
      <!-- Table -->
     <div class="table-responsive">
-      <table class="table table-bordered table-striped mt-4 align-middle">
-        <thead class="table-primary">
+      <table class="table table-bordered table-primary table-striped mt-4 align-middle shadow">
+        <thead class="table-info">
           <tr>
             <th>Username</th>
             <th>Role</th>
@@ -25,9 +25,9 @@
   <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content shadow-lg">
-        <div class="modal-header bg-primary  text-white">
+        <div class="modal-header bg-primary-subtle  text-black bg-opacity-50">
           <h5 class="modal-title " id="addUserModalLabel">Add New User</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">
@@ -61,7 +61,7 @@
 
             <!-- Add Button -->
             <div class="d-grid">
-              <button type="submit" class="btn btn-success">Add User</button>
+              <button type="submit" class="btn btn-success bg-success text-light">Add User</button>
             </div>
           </form>
         </div>
@@ -71,5 +71,3 @@
 
   <!-- Bootstrap JS -->
   <script src="../js/user_management.js"></script>
-</body>
-</html>
