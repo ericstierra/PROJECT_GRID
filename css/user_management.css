@@ -67,3 +67,14 @@ table {
     opacity: 1;
   }
 }
+
+/* Top → Bottom */
+.move-down {
+  animation: moveDown 1s linear;
+}
+@keyframes moveDown {
+  from { transform: translateY(-500px);
+        opacity: 0; }
+  to   { transform: translateY(0); 
+        opacity: 1; }
+}
