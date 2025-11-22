@@ -1,0 +1,98 @@
+
+
+<h1 class="h3 mb-4">Settings</h1>
+
+<div class="row">
+    <div class="col-lg-6">
+        <!-- Barangay List Management -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Barangay List Management</h5>
+            </div>
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <input type="text" id="barangayInput" class="form-control" placeholder="Add new barangay...">
+                    <button class="btn btn-primary" type="button" onclick="addBarangay()">Add</button>
+                </div>
+                <div id="barangayList" class="list-group">
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>Poblacion</span>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>Villa Ibaba</span>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <!-- System Preferences -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">System Preferences</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="mapProvider" class="form-label">Default Map Provider:</label>
+                    <select id="mapProvider" class="form-select">
+                        <option>OpenStreetMap (default)</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="themeSelect" class="form-label">Theme:</label>
+                    <select id="themeSelect" class="form-select">
+                        <option>Dark</option>
+                        <option>Light</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="languageSelect" class="form-label">Language:</label>
+                    <select id="languageSelect" class="form-select">
+                        <option>English</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <!-- Roles & Permissions -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Roles & Permissions</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Role</th>
+                                <th class="text-center">Can View</th>
+                                <th class="text-center">Can Edit</th>
+                                <th class="text-center">Can Delete</th>
+                                <th class="text-center">Can Manage Users</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Administrator</td><td class="text-center">✔</td><td class="text-center">✔</td><td class="text-center">✔</td><td class="text-center">✔</td></tr>
+                            <tr><td>Encoder</td><td class="text-center">✔</td><td class="text-center">✔</td><td class="text-center">✖</td><td class="text-center">✖</td></tr>
+                            <tr><td>Viewer</td><td class="text-center">✔</td><td class="text-center">✖</td><td class="text-center">✖</td><td class="text-center">✖</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Load page-specific script -->
+<script src="../js/settings.js"></script>
