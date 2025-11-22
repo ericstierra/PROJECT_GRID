@@ -70,7 +70,7 @@ table {
 
 /* Top → Bottom */
 .move-down {
-  animation: moveDown 1s linear;
+  animation: moveDown 0.3s linear;
 }
 @keyframes moveDown {
   from { transform: translateY(-500px);
