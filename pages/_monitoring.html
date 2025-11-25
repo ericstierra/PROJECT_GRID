@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Situation Monitoring View</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Leaflet (map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Chart.js (charts inside left column) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- page styles -->
+    <link rel="stylesheet" href="../assets/css/monitoring.css">
+</head>
+<body>
+    <header class="monitoring-header d-flex align-items-center px-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <h1 class="h5 text-white mb-0">Project GRID - Incident Report Monitoring Dashboard</h1>
+            <div class="d-flex gap-2">
+                <div class="badge stat-badge bg-primary d-flex align-items-center">
+                    <i class="bi bi-calendar-day me-2 fs-5"></i>
+                    <div class="text-start">
+                        <div class="small">Today</div>
+                        <div class="fw-bold fs-5">0</div>
+                    </div>
+                </div>
+                <div class="badge stat-badge bg-success d-flex align-items-center">
+                    <i class="bi bi-calendar2-week me-2 fs-5"></i>
+                    <div class="text-start">
+                        <div class="small">This Month</div>
+                        <div class="fw-bold fs-5">0</div>
+                    </div>
+                </div>
+                <div class="badge stat-badge bg-warning text-dark d-flex align-items-center">
+                    <i class="bi bi-calendar2-check me-2 fs-5"></i>
+                    <div class="text-start">
+                        <div class="small">This Year</div>
+                        <div class="fw-bold fs-5">6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-fluid px-3 py-3">
+        <div class="row g-3">
+            <!-- left: charts + list -->
+            <div class="col-md-3">
+                <div class="card monitor-card h-100">
+                    <div class="card-body">
+                        <h6 class="text-white">Overview</h6>
+
+                        <!-- small charts (design-only) -->
+                        <div class="row g-2 my-2">
+                            <div class="col-12">
+                                <div class="card bg-transparent border-0 p-2">
+                                    <div class="small text-muted">Incidents by Type</div>
+                                    <canvas id="chartType" height="100"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card bg-transparent border-0 p-2">
+                                    <div class="small text-muted">Incidents by Barangay</div>
+                                    <canvas id="chartBarangay" height="80"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-2" style="border-color: #232323;">
+
+                        <h6 class="text-white">Latest Incident Report</h6>
+                        <div class="list-group mt-3">
+                            <!-- dummy incident to display (pins will show on map) -->
+                            <div class="list-group-item list-group-item-dark mb-3 p-3 rounded">
+                                <div class="d-flex justify-content-between">
+                                    <div><strong>1. Maritime (Dummy Port)</strong></div>
+                                    <div class="badge bg-secondary">NEW</div>
+                                </div>
+                                <div class="small text-muted mt-2">Date: 2025-11-23 - 09:00H</div>
+                                <div class="small mt-1"><strong>Vehicle Involved:</strong> Boat</div>
+                                <div class="small"><strong>No. of Victim/Patient:</strong> 3</div>
+                                <div class="mt-2 text-muted small">Location: Dummy Port, Barangay Caridad Ibaba</div>
+                            </div>
+
+                            <div class="list-group-item list-group-item-dark mb-3 p-3 rounded">
+                                <strong>2. Road Crash (Barangay Zone 2)</strong>
+                                <div class="small text-muted mt-2">Date: 2025-08-13 - 15:04H</div>
+                                <div class="small mt-1"><strong>Vehicle Involved:</strong> Motorcycle</div>
+                                <div class="small"><strong>No. of Victim/Patient:</strong> 2</div>
+                            </div>
+
+                            <div class="list-group-item list-group-item-dark p-3 rounded">
+                                <strong>3. Fire (Balubad)</strong>
+                                <div class="small text-muted mt-2">Date: 2025-08-06 - 17:38H</div>
+                                <div class="small mt-1"><strong>Affected:</strong> 2 houses</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- center map -->
+            <div class="col-md-6">
+                <div class="card monitor-card h-100">
+                    <div class="card-body p-0 position-relative" style="min-height:520px;">
+                        <div class="map-zoom-controls">
+                            <button id="zoomIn" class="btn btn-sm btn-light mb-1">+</button>
+                            <button id="zoomOut" class="btn btn-sm btn-light">−</button>
+                        </div>
+
+                        <div id="mapPlaceholder" class="w-100 h-100"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- right charts / legend -->
+            <div class="col-md-3">
+                <div class="card monitor-card h-100">
+                    <div class="card-body">
+                        <h6 class="text-white mb-3">Incident Data Charts</h6>
+
+                        <div class="mb-3">
+                            <div class="small text-muted mb-2">Incidents per Barangay</div>
+                            <div class="d-flex align-items-end gap-2 chart-mini" style="height:90px;">
+                                <div class="chart-bar text-center">
+                                    <div class="bar short bg-pink"></div>
+                                    <div class="small text-muted mt-1">Tagbakin</div>
+                                </div>
+                                <div class="chart-bar text-center">
+                                    <div class="bar tall bg-pink"></div>
+                                    <div class="small text-muted mt-1">Balubad</div>
+                                </div>
+                                <div class="chart-bar text-center">
+                                    <div class="bar mid bg-pink"></div>
+                                    <div class="small text-muted mt-1">San Andres</div>
+                                </div>
+                                <div class="chart-bar text-center">
+                                    <div class="bar mid bg-pink"></div>
+                                    <div class="small text-muted mt-1">Poblacion</div>
+                                </div>
+                                <div class="chart-bar text-center">
+                                    <div class="bar mid bg-pink"></div>
+                                    <div class="small text-muted mt-1">Villa Ilaya</div>
+                                </div>
+                                <div class="chart-bar text-center">
+                                    <div class="bar tall bg-pink"></div>
+                                    <div class="small text-muted mt-1">Caridad Ibaba</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-3">
+
+                        <div class="mb-3">
+                            <div class="small text-muted mb-2">Type of Incidents</div>
+                            <div class="d-flex gap-2 align-items-end" style="height:100px;">
+                                <div class="w-100 text-center">
+                                    <div class="bar-type tall bg-blue"></div>
+                                    <div class="small text-muted mt-1">Road Crash</div>
+                                </div>
+                                <div class="w-100 text-center">
+                                    <div class="bar-type short bg-cyan"></div>
+                                    <div class="small text-muted mt-1">Fire</div>
+                                </div>
+                                <div class="w-100 text-center">
+                                    <div class="bar-type mid bg-green"></div>
+                                    <div class="small text-muted mt-1">Maritime</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-3">
+
+                        <div>
+                            <div class="small text-muted mb-2">Incidents per Month</div>
+                            <div class="w-100 graph-month" style="height:50px;"></div>
+                            <div class="small text-muted mt-2">August</div>
+                        </div>
+
+                        <hr class="my-3">
+
+                        <h6 class="mt-2">Legend:</h6>
+                        <div class="d-flex flex-column gap-2 small">
+                            <div><i class="bi bi-car-front-fill text-primary me-2"></i>Road Crash</div>
+                            <div><i class="bi bi-fire text-danger me-2"></i>Fire</div>
+                            <div><i class="bi bi-ship text-success me-2"></i>Maritime</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- page script: init charts + map (design-only, with dummy incidents) -->
+    <script>
+    (function() {
+        // ---------- Chart.js small charts ----------
+        const ctxType = document.getElementById('chartType').getContext('2d');
+        new Chart(ctxType, {
+            type: 'doughnut',
+            data: {
+                labels: ['Road Crash', 'Fire', 'Maritime'],
+                datasets: [{
+                    data: [3,1,2],
+                    backgroundColor: ['#0d6efd','#dc3545','#20c997'],
+                    hoverOffset: 6,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        const ctxBarangay = document.getElementById('chartBarangay').getContext('2d');
+        new Chart(ctxBarangay, {
+            type: 'bar',
+            data: {
+                labels: ['Tagbakin','Balubad','San Andres','Poblacion','Villa Ilaya','Caridad Ibaba'],
+                datasets: [{
+                    data: [1,2,1,1,1,2],
+                    backgroundColor: '#d63384',
+                    maxBarThickness: 18
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { color: '#9aa0a6', autoSkip: true } },
+                    y: { display: false }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // ---------- Leaflet map (dark OSM, centered on Atimonan, Quezon) ----------
+        // approximate Atimonan coords: [14.1248, 122.2286] (centered on municipality)
+        const center = [14.1248, 122.2286];
+        const map = L.map('mapPlaceholder', { zoomControl: false }).setView(center, 12);
+
+        // dark basemap (CartoDB Dark Matter)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+            maxZoom: 19
+        }).addTo(map);
+
+        // add zoom control in top-right (we keep our custom buttons too)
+        L.control.zoom({ position: 'topright' }).addTo(map);
+
+        // dummy incidents (pins) -- these correspond to items in the left list
+        const incidents = [
+            {
+                id: 'IR-001',
+                title: 'Maritime — Dummy Port',
+                coords: [14.1283, 122.2330],
+                datetime: '2025-11-23 09:00H',
+                details: 'Boat involved — 3 victims. Location: Barangay Caridad Ibaba.'
+            },
+            {
+                id: 'IR-002',
+                title: 'Road Crash — Barangay Zone 2',
+                coords: [14.1060, 122.2165],
+                datetime: '2025-08-13 15:04H',
+                details: 'Motorcycle involved — 2 victims.'
+            },
+            {
+                id: 'IR-003',
+                title: 'Fire — Balubad',
+                coords: [14.1395, 122.2418],
+                datetime: '2025-08-06 17:38H',
+                details: 'Structural fire — 2 houses affected.'
+            }
+        ];
+
+        // simple colored circle markers with popups
+        incidents.forEach(i => {
+            const color = i.title.toLowerCase().includes('fire') ? '#dc3545' :
+                          i.title.toLowerCase().includes('maritime') ? '#20c997' : '#0d6efd';
+            const marker = L.circleMarker(i.coords, {
+                radius: 8,
+                color: '#000',
+                weight: 1,
+                fillColor: color,
+                fillOpacity: 0.95
+            }).addTo(map);
+
+            const popupHtml = `<strong>${i.title}</strong><br/><small class="text-muted">${i.datetime}</small><br/><div style="margin-top:6px">${i.details}</div><div style="margin-top:6px" class="small text-muted">${i.id}</div>`;
+            marker.bindPopup(popupHtml);
+        });
+
+        // map zoom buttons (our custom ones)
+        document.getElementById('zoomIn').addEventListener('click', () => map.zoomIn());
+        document.getElementById('zoomOut').addEventListener('click', () => map.zoomOut());
+    })();
+    </script>
+</body>
+</html>

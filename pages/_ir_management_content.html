@@ -1,0 +1,125 @@
+<!-- Main content for IR Management -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0 fade-header">IR Management</h1>
+    <button type="button" class="btn btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#addIrModal">
+        <i class="bi bi-plus-lg"></i> Add IR
+    </button> 
+</div>
+
+<!-- Table -->
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>IR Number</th>
+                        <th>Added by</th>
+                        <th>Added on</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="irTableBody">
+                    <tr>
+                        <td>IR-2025-001</td>
+                        <td>Juan Dela Cruz</td>
+                        <td>2025-10-23</td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#viewIrModal" title="View"><i class="bi bi-eye-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editIrModal" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger" title="Delete"><i class="bi bi-trash-fill"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>IR-2025-002</td>
+                        <td>Maria Clara</td>
+                        <td>2025-10-24</td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#viewIrModal" title="View"><i class="bi bi-eye-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editIrModal" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger" title="Delete"><i class="bi bi-trash-fill"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add IR Modal -->
+<div class="modal fade" id="addIrModal" tabindex="-1" aria-labelledby="addIrModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addIrModalLabel">Add New Incident Report</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="addIrForm">
+          <!-- Form fields for a new IR would go here -->
+          <div class="mb-3">
+            <label for="irDetails" class="form-label">Incident Details</label>
+            <textarea class="form-control" id="irDetails" rows="5" placeholder="Enter all incident details..."></textarea>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Add Report</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- View IR Modal -->
+<div class="modal fade" id="viewIrModal" tabindex="-1" aria-labelledby="viewIrModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content shadow-lg">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewIrModalLabel">View Incident Report (IR-2025-001)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- Read-only details of the IR -->
+            <h6>Incident Details:</h6>
+            <p class="text-muted">A collision occurred on the national highway in Brgy. Tagbakin involving a motorcycle (Plate No. ABC-123) and a tricycle (Plate No. XYZ-456). The motorcycle rider, Mr. Juan Dela Cruz, sustained a fractured arm and multiple abrasions.</p>
+            <hr>
+            <h6>Actions Taken:</h6>
+            <p class="text-muted">The MDRRMO Atimonan response team was dispatched. First aid was administered to the victim on-site before they were stabilized and transported to QPH-Doña Marta for further medical attention. PNP and BFP personnel assisted with scene management and control.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Edit IR Modal -->
+<div class="modal fade" id="editIrModal" tabindex="-1" aria-labelledby="editIrModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editIrModalLabel">Edit Incident Report (IR-2025-001)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editIrForm">
+          <!-- Form fields pre-filled with IR data -->
+          <div class="mb-3">
+            <label for="editIrDetails" class="form-label">Incident Details</label>
+            <textarea class="form-control" id="editIrDetails" rows="5">A collision occurred on the national highway in Brgy. Tagbakin involving a motorcycle (Plate No. ABC-123) and a tricycle (Plate No. XYZ-456). The motorcycle rider, Mr. Juan Dela Cruz, sustained a fractured arm and multiple abrasions.</textarea>
+          </div>
+          <div class="mb-3">
+            <label for="editActionsTaken" class="form-label">Actions Taken</label>
+            <textarea class="form-control" id="editActionsTaken" rows="5">The MDRRMO Atimonan response team was dispatched. First aid was administered to the victim on-site before they were stabilized and transported to QPH-Doña Marta for further medical attention. PNP and BFP personnel assisted with scene management and control.</textarea>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- You would also need a JS file for this page's specific logic -->
+<!-- <script src="../js/ir_management.js"></script> -->

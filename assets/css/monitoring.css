@@ -1,0 +1,115 @@
+/* Standalone monitoring page styles (updated with map/chart specifics) */
+
+:root{
+    --bg:#0e0e0f;
+    --card:#171717;
+    --muted:#9aa0a6;
+    --accent-pink:#d63384;
+    --accent-blue:#0d6efd;
+    --accent-cyan:#0dcaf0;
+    --accent-green:#20c997;
+}
+
+html,body{height:100%}
+body{
+    margin:0;
+    background:#121212;
+    color:#e6eef2;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing:antialiased;
+}
+
+/* header */
+.monitoring-header{
+    border-bottom:1px solid #262626;
+    padding:10px 0;
+    background:linear-gradient(180deg, rgba(0,0,0,0.25), transparent);
+}
+
+/* badges */
+.stat-badge{
+    padding:10px 14px;
+    border-radius:6px;
+    min-width:120px;
+}
+
+/* cards */
+.monitor-card, .card {
+    background:var(--card);
+    border:1px solid #262626;
+    color:var(--muted);
+}
+.monitor-card .card-body { padding:16px; }
+
+/* list group items */
+.list-group-item-dark{
+    background:#1d1d1d;
+    border:1px solid #2b2b2b;
+    color:#e6eef2;
+}
+.list-group-item-dark .small{ color:var(--muted); }
+
+/* map placeholder */
+#mapPlaceholder{
+    background:#0b0b0b center/cover no-repeat;
+    min-height:520px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+/* leaflet container should fill */
+.leaflet-container { height:100%; width:100%; }
+
+/* overlay icon/text inside placeholder (used before map tiles load) */
+.map-overlay{ color:#9aa0a6; opacity:0.95; }
+
+/* custom zoom control group */
+.map-zoom-controls{
+    position:absolute;
+    left:12px;
+    top:12px;
+    z-index:20;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+/* small faux charts on right */
+.chart-mini .chart-bar{ width:14%; }
+.chart-mini .bar{ width:100%; border-radius:4px; }
+.chart-mini .bar.short{ height:20px; }
+.chart-mini .bar.mid{ height:40px; }
+.chart-mini .bar.tall{ height:60px; }
+.bg-pink{ background:var(--accent-pink); }
+.bg-blue{ background:var(--accent-blue); }
+.bg-cyan{ background:var(--accent-cyan); }
+.bg-green{ background:var(--accent-green); }
+
+/* type bars */
+.bar-type{ width:70%; margin:0 auto; border-radius:4px; }
+.bar-type.short{ height:20px; }
+.bar-type.mid{ height:55px; }
+.bar-type.tall{ height:80px; }
+
+/* month graph */
+.graph-month{
+    background:
+      linear-gradient(90deg, rgba(255,255,255,0.03) 0 10%, transparent 10%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.01) 0 4px, transparent 4px 8px);
+    border-radius:4px;
+    height:50px;
+}
+
+/* Chart canvas containers */
+#chartType, #chartBarangay { background: transparent; display:block; }
+
+/* utilities */
+.text-muted{ color:var(--muted) !important; }
+
+/* responsive tweaks */
+@media (max-width: 991px){
+    .chart-mini .chart-bar{ width:18%; }
+    #mapPlaceholder{ min-height:420px; }
+}

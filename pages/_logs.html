@@ -1,0 +1,135 @@
+<!-- Logs / Audit trail page (design-only) -->
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0 fade-header">System Logs</h1>
+    <div class="input-group" style="width: 300px;">
+        <input type="text" name="table_search" class="form-control" placeholder="Search logs...">
+        <button class="btn btn-outline-secondary" type="button">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <!-- Design-only filters -->
+        <div class="row mb-3 g-2 align-items-center">
+            <div class="col-auto">
+                <label for="filterUser" class="form-label visually-hidden">User</label>
+                <select id="filterUser" class="form-select form-select-sm">
+                    <option selected>All users</option>
+                    <option>admin</option>
+                    <option>operator</option>
+                    <option>guest</option>
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <label for="filterAction" class="form-label visually-hidden">Action</label>
+                <select id="filterAction" class="form-select form-select-sm">
+                    <option selected>All actions</option>
+                    <option>Added User</option>
+                    <option>Added Incident</option>
+                    <option>Edited Incident</option>
+                    <option>Added Barangay</option>
+                    <option>Changed Default Map</option>
+                    <option>Login</option>
+                    <option>Logout</option>
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <label for="filterYear" class="form-label visually-hidden">Year</label>
+                <select id="filterYear" class="form-select form-select-sm">
+                    <option selected>All years</option>
+                    <option>2025</option>
+                    <option>2024</option>
+                    <option>2023</option>
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <button id="clearFilters" class="btn btn-sm btn-outline-secondary">Clear Filters</button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Log #</th>
+                        <th>Date & Time</th>
+                        <th>User</th>
+                        <th>Action</th>
+                        <th>Target</th>
+                        <th style="min-width: 300px;">Details</th>
+                        <th>IP Address</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2025-11-20 09:12:34</td>
+                        <td>admin</td>
+                        <td>Added User</td>
+                        <td>Users Module</td>
+                        <td class="text-wrap">Created user "operator" with role "Operator".</td>
+                        <td>192.168.1.10</td>
+                        <td>Success</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2025-11-21 14:45:02</td>
+                        <td>operator</td>
+                        <td>Added Incident</td>
+                        <td>Incident #2025-045</td>
+                        <td class="text-wrap">Recorded new incident: Road Crash at Brgy. Tagbakin.</td>
+                        <td>192.168.1.15</td>
+                        <td>Success</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>2025-11-22 08:05:18</td>
+                        <td>operator</td>
+                        <td>Edited Incident</td>
+                        <td>Incident #2025-045</td>
+                        <td class="text-wrap">Updated victim details and actions taken fields.</td>
+                        <td>192.168.1.15</td>
+                        <td>Success</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>2025-11-22 10:30:00</td>
+                        <td>admin</td>
+                        <td>Changed Default Map</td>
+                        <td>Settings</td>
+                        <td class="text-wrap">Changed default map provider to "OpenStreetMap".</td>
+                        <td>192.168.1.10</td>
+                        <td>Success</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>2025-11-22 11:00:44</td>
+                        <td>guest</td>
+                        <td>Login</td>
+                        <td>Auth</td>
+                        <td class="text-wrap">User "guest" logged in.</td>
+                        <td>203.0.113.45</td>
+                        <td>Success</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card-footer bg-white clearfix">
+        <ul class="pagination pagination-sm m-0 float-end">
+            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+        </ul>
+    </div>
+</div>

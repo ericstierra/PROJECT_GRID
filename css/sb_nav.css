@@ -29,9 +29,9 @@ body {
     width: 70px;
     min-width: 70px;
     z-index: 1000;
-    height: 100vh;
+    height: 100%;
     transition: all 0.25s ease-in-out;
-    background-color:#082237; /* Dark sidebar */
+    background-color:#063b53; /* Dark sidebar */
     display: flex;
     flex-direction: column;
     border-right: 1px solid #495057;
@@ -75,14 +75,12 @@ body {
 }
 
 .sidebar-link:hover {
-    background-color: #5c748d;
-    color: #152948; /* Primary color on hover */
+    color: #ffffff; /* White text on hover */
 }
 
 .sidebar-link.active {
-    background-color: rgba(13, 110, 253, 0.1); /* Light primary background for active */
-    color: #0d6efd;
-    border-left: 3px solid #0d6efd;
+    color: #ffffff;
+    font-weight: 600; /* Make active link bold */
 }
 
 /* When sidebar is collapsed */
@@ -98,7 +96,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color:#6291a7;/* Slightly lighter than sidebar */
+    background-color:#fc6500;/* Slightly lighter than sidebar */
 }
 
 .navbar-toggler-icon {
