@@ -17,8 +17,7 @@ const tr = document.createElement('tr');
       <td><span class="badge ${status === 'Active' ? 'bg-success' : 'bg-secondary'}">${status}</span></td>
       <td class="action-btns">
       <button class="btn btn-sm btn-warning edit-btn">Edit</button>
-      <button class="btn btn-sm btn-danger delete-btn">Delete</button>
-      </td>
+        </td>
       `;
 
       // Append row to table
@@ -33,12 +32,6 @@ modal.hide();
 // Handle Edit & Delete actions
 userTableBody.addEventListener('click', function (e) {
 
-    // Delete Row
-    if (e.target.classList.contains('delete-btn')) {
-        if (confirm("Are you sure you want to delete this user?")) {
-            e.target.closest('tr').remove();
-        }
-    }
 
   // Edit Row (Inline Editing)
 if (e.target.classList.contains('edit-btn')) {
