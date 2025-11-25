@@ -10,22 +10,23 @@
                 <h5 class="card-title mb-0">Barangay List Management</h5>
             </div>
             <div class="card-body">
-                <div class="input-group mb-3">
-                    <input type="text" id="barangayInput" class="form-control" placeholder="Add new barangay...">
-                    <button class="btn btn-primary" type="button" onclick="addBarangay()">Add</button>
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addBarangayModal">
+                        <i class="bi bi-plus-lg"></i> Add Barangay
+                    </button>
                 </div>
                 <div id="barangayList" class="list-group">
                     <div class="list-group-item d-flex justify-content-between align-items-center">
                         <span>Poblacion</span>
                         <div>
-                            <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editBarangayModal"><i class="bi bi-pencil-fill"></i></button>
                             <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
                         </div>
                     </div>
                     <div class="list-group-item d-flex justify-content-between align-items-center">
                         <span>Villa Ibaba</span>
                         <div>
-                            <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editBarangayModal"><i class="bi bi-pencil-fill"></i></button>
                             <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
                         </div>
                     </div>
@@ -93,6 +94,52 @@
         </div>
     </div>
 </div>
+
+<!-- Add Barangay Modal -->
+<div class="modal fade" id="addBarangayModal" tabindex="-1" aria-labelledby="addBarangayModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addBarangayModalLabel">Add New Barangay</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="addBarangayForm">
+          <div class="mb-3">
+            <label for="barangayName" class="form-label">Barangay Name</label>
+            <input type="text" class="form-control" id="barangayName" placeholder="Enter barangay name" required>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Add Barangay</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Barangay Modal -->
+<div class="modal fade" id="editBarangayModal" tabindex="-1" aria-labelledby="editBarangayModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editBarangayModalLabel">Edit Barangay</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editBarangayForm">
+            <div class="mb-3">
+              <label for="editBarangayName" class="form-label">Barangay Name</label>
+              <input type="text" class="form-control" id="editBarangayName" placeholder="Enter new barangay name" required>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- Load page-specific script -->
 <script src="../js/settings.js"></script>
