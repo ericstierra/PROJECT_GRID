@@ -3,7 +3,7 @@ const userTableBody = document.getElementById('userTableBody');
 
     // Add User Form Submit
   form.addEventListener('submit', function (e) {
-  e.preventDefault();
+  e.preventDefault(0);
 
 const fullName = document.getElementById('fullName').value;
 const userType = document.getElementById('userType').value;
@@ -88,7 +88,6 @@ if (e.target.classList.contains('save-btn')) {
 
     actionCell.innerHTML = `
         <button class="btn btn-sm btn-primary edit-btn">Edit</button>
-        <button class="btn btn-sm btn-danger delete-btn">Delete</button>
     `;
 }
 
