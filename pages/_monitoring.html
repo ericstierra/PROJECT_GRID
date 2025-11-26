@@ -121,6 +121,19 @@
     .muted { color:var(--muted); font-size:13px; }
     .kpi { font-size:20px; font-weight:700; }
     .card-title { font-size:14px; color:#dfe7eb; margin-bottom:6px; }
+
+    /* Ensure canvas layout is stable and visible during initial render */
+    .panel canvas { display: block; width: 100% !important; height: auto !important; }
+    .right-col { position: relative; } /* ensure ResizeObserver sees stable box */
+
+    /* Chart container: fixed height, canvas fills it absolutely to avoid layout jumps */
+    .chart-container { position: relative; width: 100%; overflow: visible; }
+    .chart-container.chart-lg { height: 150px; }
+    .chart-container.chart-sm { height: 120px; }
+    .chart-container canvas { position: absolute !important; top: 0; left: 0; width: 100% !important; height: 100% !important; }
+
+    /* Prevent CSS/JS-driven transforms/animations from shifting canvases */
+    .panel canvas, .chart-container canvas { transition: none !important; animation: none !important; transform: none !important; }
   </style>
 </head>
 <body>
@@ -230,7 +243,9 @@
             <div class="card-title">Incidents by Type</div>
             <div class="muted small">Last 30 days</div>
           </div>
-          <canvas id="typeChart" height="150"></canvas>
+          <div class="chart-container chart-lg">
+            <canvas id="typeChart"></canvas>
+          </div>
         </div>
 
         <div class="panel mb-3">
@@ -238,7 +253,9 @@
             <div class="card-title">Incidents per Barangay</div>
             <div class="muted small">Aggregated</div>
           </div>
-          <canvas id="barangayChart" height="120"></canvas>
+          <div class="chart-container chart-sm">
+            <canvas id="barangayChart"></canvas>
+          </div>
         </div>
 
         <div class="panel">
@@ -414,7 +431,7 @@
     // -------------------------
     // Charts
     // -------------------------
-    // Incidents by Type (doughnut)
+    // Create charts with initial animations disabled to avoid the "slide/fade out" effect
     const ctxType = document.getElementById('typeChart').getContext('2d');
     const typeCounts = incidents.reduce((acc,i)=> (acc[i.type]=(acc[i.type]||0)+1,acc), {});
     const typeChart = new Chart(ctxType, {
@@ -423,10 +440,14 @@
         labels: Object.keys(typeCounts),
         datasets:[{ data:Object.values(typeCounts), backgroundColor:['#0d6efd','#dc3545','#20c997'] }]
       },
-      options:{ plugins:{legend:{display:true,labels:{color:'#e6eef2'}}}, maintainAspectRatio:false }
+      options:{
+        plugins:{ legend:{ display:true, labels:{ color:'#e6eef2' } } },
+        maintainAspectRatio:false,
+        animation: false  // disable initial animation
+      }
     });
 
-    // Barangay bar chart
+    // Barangay bar chart (initial animation disabled)
     const ctxBarangay = document.getElementById('barangayChart').getContext('2d');
     const barangayCounts = incidents.reduce((acc,i)=> (acc[i.barangay]=(acc[i.barangay]||0)+1,acc), {});
     const barangayChart = new Chart(ctxBarangay, {
@@ -436,87 +457,71 @@
         datasets:[{ data:Object.values(barangayCounts), backgroundColor:'#d63384', maxBarThickness:20 }]
       },
       options:{
-        plugins:{legend:{display:false}}, maintainAspectRatio:false,
-        scales:{ x:{ ticks:{ color:'#cbd5da' } }, y:{ display:false } }
+        plugins:{ legend:{ display:false } },
+        maintainAspectRatio:false,
+        scales:{ x:{ ticks:{ color:'#cbd5da' } }, y:{ display:false } },
+        animation: false // disable initial animation
       }
     });
 
     // -------------------------
-    // Controls
+    // Ensure charts render reliably
     // -------------------------
-    $('#zoomIn').addEventListener('click', ()=> map.zoomIn());
-    $('#zoomOut').addEventListener('click', ()=> map.zoomOut());
-
-    $('#btnToggleBase').addEventListener('click', ()=>{
-      if (currentBase === 'dark'){
-        map.removeLayer(darkOSM);
-        googleSat.addTo(map);
-        currentBase = 'sat';
-        $('#btnToggleBase').innerHTML = '<i class="bi bi-satellite"></i>';
-      } else {
-        map.removeLayer(googleSat);
-        darkOSM.addTo(map);
-        currentBase = 'dark';
-        $('#btnToggleBase').innerHTML = '<i class="bi bi-map"></i>';
+    function resizeCharts(){
+      try{
+        // Chart.js v4 exposes resize() on chart instances
+        typeChart.resize();
+        barangayChart.resize();
+        typeChart.update();
+        barangayChart.update();
+      }catch(e){
+        // fallback: call update
+        try{ typeChart.update(); barangayChart.update(); }catch(_){}
       }
+    }
+
+    // ResizeObserver: watch the right column (charts container) for size changes
+    const rightCol = document.querySelector('.right-col');
+    if (window.ResizeObserver && rightCol){
+      const ro = new ResizeObserver(()=> resizeCharts());
+      ro.observe(rightCol);
+    }
+
+    // Also call resize on window load and after a short delay (fonts/layout)
+    window.addEventListener('load', ()=> {
+      // Enable animations for subsequent updates after initial (no-animation) render
+      try{
+        typeChart.options.animation = { duration: 350, easing: 'easeOutQuart' };
+        barangayChart.options.animation = { duration: 350, easing: 'easeOutQuart' };
+      }catch(e){}
+      // Do a quick no-animation update to stabilize pixel sizes, then a normal update
+      try{ typeChart.update(0); barangayChart.update(0); }catch(_){}
+      resizeCharts();
+      setTimeout(resizeCharts, 250);
+      setTimeout(resizeCharts, 600);
     });
 
-    let clusterShown = true;
-    $('#btnClusterToggle').addEventListener('click', ()=>{
-      clusterShown = !clusterShown;
-      if (clusterShown){
-        map.addLayer(clusterGroup);
-        $('#btnClusterToggle').classList.remove('active');
-      } else {
-        map.removeLayer(clusterGroup);
-        $('#btnClusterToggle').classList.add('active');
-      }
-    });
-
-    $('#btnHeatToggle').addEventListener('click', ()=>{
-      heatEnabled = !heatEnabled;
-      if (heatEnabled){
-        if (heatLayer) heatLayer.addTo(map);
-        $('#btnHeatToggle').classList.add('active');
-      } else {
-        if (heatLayer) map.removeLayer(heatLayer);
-        $('#btnHeatToggle').classList.remove('active');
-      }
-    });
-
-    // Filter apply/clear
-    $('#btnApplyFilters').addEventListener('click', ()=>{
-      const type = $('#filterType').value;
-      const barangay = $('#filterBarangay').value;
-      const filtered = incidents.filter(i=>{
-        const okType = (type==='all') ? true : i.type === type;
-        const okBrgy = (barangay==='all') ? true : i.barangay === barangay;
-        return okType && okBrgy;
+    // If sidebar toggle exists, ensure charts resize after toggling
+    const btnToggleSidebar = document.getElementById('btnToggleSidebar');
+    if (btnToggleSidebar){
+      btnToggleSidebar.addEventListener('click', ()=> {
+        // allow CSS transition to finish before resizing
+        setTimeout(resizeCharts, 260);
       });
-      drawMarkers(filtered);
-      renderIncidentList(filtered);
-      // update charts (simple re-aggregation)
-      updateCharts(filtered);
-    });
+    }
 
-    $('#btnClearFilters').addEventListener('click', ()=>{
-      $('#filterType').value = 'all';
-      $('#filterBarangay').value = 'all';
-      drawMarkers(incidents);
-      renderIncidentList(incidents);
-      updateCharts(incidents);
-    });
+    // If map invalidation or other interactions occur, you can also call resizeCharts()
+    // Example: when switching base layers or clusters which may affect layout
+    document.getElementById('btnToggleBase').addEventListener('click', ()=> setTimeout(resizeCharts, 200));
+    document.getElementById('btnClusterToggle').addEventListener('click', ()=> setTimeout(resizeCharts, 200));
+    document.getElementById('btnHeatToggle').addEventListener('click', ()=> setTimeout(resizeCharts, 200));
 
-    function updateCharts(list){
-      const tcounts = list.reduce((acc,i)=> (acc[i.type]=(acc[i.type]||0)+1,acc), {});
-      typeChart.data.labels = Object.keys(tcounts);
-      typeChart.data.datasets[0].data = Object.values(tcounts);
-      typeChart.update();
-
-      const bcounts = list.reduce((acc,i)=> (acc[i.barangay]=(acc[i.barangay]||0)+1,acc), {});
-      barangayChart.data.labels = Object.keys(bcounts);
-      barangayChart.data.datasets[0].data = Object.values(bcounts);
-      barangayChart.update();
+    // Also ensure updateCharts uses enabled animations (it may be called later)
+    function enableChartAnimations(){
+      try{
+        typeChart.options.animation = { duration: 350, easing: 'easeOutQuart' };
+        barangayChart.options.animation = { duration: 350, easing: 'easeOutQuart' };
+      }catch(e){}
     }
 
     // Refresh button (simulates refetch)
@@ -525,6 +530,7 @@
       updateLocalTime();
       drawMarkers(incidents);
       renderIncidentList(incidents);
+      enableChartAnimations();
       updateCharts(incidents);
     });
 
@@ -535,6 +541,7 @@
       incidents.unshift(newItem);
       drawMarkers(incidents);
       renderIncidentList(incidents);
+      enableChartAnimations();
       updateCharts(incidents);
     });
 

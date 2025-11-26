@@ -1,3 +1,21 @@
+/* Replace font and define a professional orange/blue palette */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg: #f4f7fb;                 /* page background */
+    --panel-bg: #0b2545;           /* deep navy for sidebar */
+    --panel-border: #12263a;       /* subtle darker border */
+    --primary-blue: #0b74de;       /* primary blue accent */
+    --accent-orange: #ff7a18;      /* primary orange accent */
+    --muted: #97a6c5;              /* muted text */
+    --text-light: #eaf4ff;         /* light text on dark panels */
+    --card-bg: #ffffff;
+    --nav-gradient-start: #ff7a18;
+    --nav-gradient-end: #ff984d;
+    --transition-fast: 0.22s;
+    --transition-base: 0.35s;
+}
+
 /* Import a Google Font */
 @import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
 
@@ -9,8 +27,8 @@
 }
 
 body {
-    font-family: 'Tiktok Sans', sans-serif;
-    background-color: #f8f9fa; /* Light gray background */
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background-color: var(--bg); /* lighter, cleaner background */
 }
 
 .wrapper {
@@ -30,11 +48,13 @@ body {
     min-width: 70px;
     z-index: 1000;
     height: 100%;
-    transition: all 0.25s ease-in-out;
-    background-color:#063b53; /* Dark sidebar */
+    transition: all var(--transition-fast) ease-in-out;
+    background-color: var(--panel-bg); /* deep navy */
     display: flex;
     flex-direction: column;
-    border-right: 1px solid #495057;
+    border-right: 1px solid var(--panel-border);
+    color: var(--text-light);
+    box-shadow: 0 2px 6px rgba(9,20,40,0.12);
 }
 
 #sidebar.expand {
@@ -44,12 +64,12 @@ body {
 
 .sidebar-logo {
     padding: 1.15rem 1.5rem;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
 .sidebar-logo a {
-    color: #f8f9fa; /* Light text for logo */
+    color: var(--text-light); /* light text for logo */
 }
 
 .sidebar-nav {
@@ -58,57 +78,97 @@ body {
     list-style: none;
 }
 
+/* headers */
 .sidebar-header {
     padding: 1rem 1.5rem;
     font-size: .75rem;
-    color: #adb5bd; /* Muted light text for headers */
+    color: var(--muted); /* muted header */
 }
 
+/* links */
 .sidebar-link {
     padding: .625rem 1.625rem;
-    color: #cee2df; /* Standard light link color */
+    color: var(--muted);
     position: relative;
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.925rem;
     text-decoration: none;
     white-space: nowrap;
+    transition: color var(--transition-base), background-color var(--transition-base), padding var(--transition-fast);
+    border-left: 3px solid transparent;
+    align-items: center;
 }
 
+/* hover */
 .sidebar-link:hover {
-    color: #ffffff; /* White text on hover */
+    color: var(--text-light);
+    background-color: rgba(255,255,255,0.02);
+    border-left-color: rgba(255,255,255,0.04);
 }
 
+/* active state: subtle filled background and accent indicator */
 .sidebar-link.active {
-    color: #ffffff;
-    font-weight: 600; /* Make active link bold */
+    color: var(--text-light);
+    font-weight: 600;
+    background: linear-gradient(90deg, rgba(11,116,222,0.06), rgba(255,122,24,0.02));
+    border-left-color: var(--accent-orange);
+    box-shadow: inset 4px 0 0 rgba(255,122,24,0.06);
 }
 
-/* When sidebar is collapsed */
+/* small left pill indicator for active nav (for when expanded) */
+.sidebar-link.active::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-orange);
+    box-shadow: 0 0 8px rgba(255,122,24,0.25);
+}
+
+/* When sidebar is collapsed, center icons */
 #sidebar:not(.expand) .sidebar-nav .sidebar-item .sidebar-link {
     justify-content: center;
 }
 
+/* hide text when collapsed */
 #sidebar:not(.expand) .sidebar-nav .sidebar-header,
 #sidebar:not(.expand) .sidebar-nav .sidebar-item .sidebar-link span,
 #sidebar:not(.expand) .sidebar-logo span {
     display: none;
 }
 
-/* Navbar */
+/* Navbar: warm orange gradient with subtle shadow */
 .navbar {
-    background-color:#fc6500;/* Slightly lighter than sidebar */
+    background: linear-gradient(90deg, var(--nav-gradient-start), var(--nav-gradient-end));
+    box-shadow: 0 3px 12px rgba(11,36,60,0.12);
+    color: #fff;
 }
 
+/* small toggler touch */
 .navbar-toggler-icon {
     cursor: pointer;
 }
 
+/* avatar polish */
 .avatar {
     height: 40px;
     width: 40px;
+    border-radius: 8px;
+    border: 2px solid rgba(255,255,255,0.12);
+    object-fit: cover;
 }
 
-/* Responsive */
+/* focus & accessibility */
+.sidebar-link:focus {
+    outline: 2px solid rgba(11,116,222,0.18);
+    outline-offset: 2px;
+}
+
+/* responsive */
 @media (max-width: 767.98px) {
     #sidebar {
         margin-left: -70px; /* Start with the collapsed width hidden */
