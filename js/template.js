@@ -77,10 +77,21 @@ document.addEventListener("DOMContentLoaded", function() {
         const sidebar = document.querySelector("#sidebar");
         const sidebarToggler = document.querySelector("#sidebar-toggle");
 
-        // Check if sidebar exists and is not already expanded on mobile
-        if (sidebar && window.innerWidth > 767.98 && !sidebar.classList.contains('expand')) {
-            sidebar.classList.add("expand");
-        }
+        const handleSidebarState = () => {
+            if (sidebar) {
+                if (window.innerWidth > 767.98) {
+                    sidebar.classList.add("expand");
+                } else {
+                    sidebar.classList.remove("expand");
+                }
+            }
+        };
+
+        // Initial check
+        handleSidebarState();
+
+        // Handle window resize
+        window.addEventListener('resize', handleSidebarState);
 
         if (sidebarToggler && sidebar) {
             sidebarToggler.addEventListener("click", () => {
@@ -97,6 +108,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if (link && link.dataset.page) {
                 event.preventDefault(); // Prevent default link behavior
                 const pageUrl = link.dataset.page;
+                // In mobile view, close the sidebar after clicking a link
+                if (window.innerWidth <= 767.98) {
+                    const sidebarElement = document.querySelector("#sidebar");
+                    sidebarElement?.classList.remove("expand");
+                }
                 loadPageContent(pageUrl);
             }
         });

@@ -1,0 +1,145 @@
+
+
+<h1 class="h3 mb-4">Settings</h1>
+
+<div class="row">
+    <div class="col-lg-6">
+        <!-- Barangay List Management -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Barangay List Management</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addBarangayModal">
+                        <i class="bi bi-plus-lg"></i> Add Barangay
+                    </button>
+                </div>
+                <div id="barangayList" class="list-group">
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>Poblacion</span>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editBarangayModal"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>Villa Ibaba</span>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editBarangayModal"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <!-- System Preferences -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">System Preferences</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="mapProvider" class="form-label">Default Map Provider:</label>
+                    <select id="mapProvider" class="form-select">
+                        <option>OpenStreetMap (default)</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="themeSelect" class="form-label">Theme:</label>
+                    <select id="themeSelect" class="form-select">
+                        <option>Dark</option>
+                        <option>Light</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="languageSelect" class="form-label">Language:</label>
+                    <select id="languageSelect" class="form-select">
+                        <option>English</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <!-- Roles & Permissions -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Roles & Permissions</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Role</th>
+                                <th class="text-center">Can View</th>
+                                <th class="text-center">Can Edit</th>
+                                <th class="text-center">Can Delete</th>
+                                <th class="text-center">Can Manage Users</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Administrator</td><td class="text-center">✔</td><td class="text-center">✔</td><td class="text-center">✔</td><td class="text-center">✔</td></tr>
+                            <tr><td>Encoder</td><td class="text-center">✔</td><td class="text-center">✔</td><td class="text-center">✖</td><td class="text-center">✖</td></tr>
+                            <tr><td>Viewer</td><td class="text-center">✔</td><td class="text-center">✖</td><td class="text-center">✖</td><td class="text-center">✖</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Barangay Modal -->
+<div class="modal fade" id="addBarangayModal" tabindex="-1" aria-labelledby="addBarangayModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addBarangayModalLabel">Add New Barangay</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="addBarangayForm">
+          <div class="mb-3">
+            <label for="barangayName" class="form-label">Barangay Name</label>
+            <input type="text" class="form-control" id="barangayName" placeholder="Enter barangay name" required>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Add Barangay</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Barangay Modal -->
+<div class="modal fade" id="editBarangayModal" tabindex="-1" aria-labelledby="editBarangayModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editBarangayModalLabel">Edit Barangay</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editBarangayForm">
+            <div class="mb-3">
+              <label for="editBarangayName" class="form-label">Barangay Name</label>
+              <input type="text" class="form-control" id="editBarangayName" placeholder="Enter new barangay name" required>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Load page-specific script -->
+<script src="../js/settings.js"></script>
