@@ -1,3 +1,4 @@
+
 .fade-header {
   opacity: 0;
   animation: fadeHeader 1s forwards;
@@ -43,4 +44,24 @@
         opacity: 0;}
   to   { transform: translateY(0); 
         opacity: 1; }
+}
+
+/* Default hidden before animation */
+.animate-rows tr {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: rowFade 0.5s ease forwards;
+}
+
+/* Stagger each row */
+.animate-rows tr:nth-child(1) { animation-delay: 0.3s; }
+.animate-rows tr:nth-child(2) { animation-delay: 0.5s; }
+.animate-rows tr:nth-child(3) { animation-delay: 0.7s; }
+
+/* Keyframes */
+@keyframes rowFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
