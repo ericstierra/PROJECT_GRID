@@ -7,7 +7,7 @@
 
 /* Stagger each row */
 .animate-rows tr:nth-child(1) { animation-delay: 0.1s; }
-.animate-rows tr:nth-child(2) { animation-delay: 0.3s; }
+.animate-rows tr:nth-child(2) { animation-delay: 0.2s; }
 .animate-rows tr:nth-child(3) { animation-delay: 0.5s; }
 .animate-rows tr:nth-child(4) { animation-delay: 0.7s; }
 .animate-rows tr:nth-child(5) { animation-delay: 0.9s; }
@@ -34,7 +34,7 @@
 
 .bounce-glow:hover {
   animation: bounce 0.5s;
-  box-shadow: 0 0 15px rgb(251, 190, 105), 0 0 30px rgb(238, 181, 56);
+  box-shadow: 0 0 15px #AAC4F5, 0 0 30px #AAC4F5;
   background-color: #79b2e4;
 }
 
@@ -43,3 +43,4 @@
   50% { transform: translateY(-6px); }
   100% { transform: translateY(0); }
 }
+

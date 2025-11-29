@@ -6,7 +6,7 @@
 
 /* Left → Right */
 .move-right {
-  animation: moveRight 0.5s linear;
+  animation: moveRight 0.3s linear;
 }
 @keyframes moveRight {
   from { transform: translateX(200px); 
@@ -17,7 +17,7 @@
 
 /* Top → Bottom */
 .move-down {
-  animation: moveDown 0.5s linear;
+  animation: moveDown 0.3s linear;
 }
 @keyframes moveDown {
   from { transform: translateY(-200px);
@@ -28,7 +28,7 @@
 
 /* Bottom → Top */
 .move-up {
-  animation: moveUp 0.5s linear;
+  animation: moveUp 0.3s linear;
 }
 @keyframes moveUp {
   from { transform: translateY(200px); 
@@ -39,7 +39,7 @@
 
 /* Right → Left */
 .move-left {
-  animation: moveLeft 0.5s linear;
+  animation: moveLeft 0.3s linear;
 }
 @keyframes moveLeft {
   from { transform: translateX(-200px); 

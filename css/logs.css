@@ -7,10 +7,10 @@
 
 /* Stagger each row */
 .animate-rows tr:nth-child(1) { animation-delay: 0.1s; }
-.animate-rows tr:nth-child(2) { animation-delay: 0.3s; }
-.animate-rows tr:nth-child(3) { animation-delay: 0.5s; }
-.animate-rows tr:nth-child(4) { animation-delay: 0.7s; }
-.animate-rows tr:nth-child(5) { animation-delay: 0.9s; }
+.animate-rows tr:nth-child(2) { animation-delay: 0.2s; }
+.animate-rows tr:nth-child(3) { animation-delay: 0.3s; }
+.animate-rows tr:nth-child(4) { animation-delay: 0.4s; }
+.animate-rows tr:nth-child(5) { animation-delay: 0.5s; }
 
 /* Keyframes */
 @keyframes rowFade {
