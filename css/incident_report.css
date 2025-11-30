@@ -60,7 +60,7 @@
 
 /* Focus effect on container */
 .search-bar:focus-within {
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 0 15px #AAC4F5, 0 0 30px #AAC4F5;
     transform: scale(1.02);
 }
 
@@ -114,4 +114,8 @@
 .search-bar .form-control:focus::placeholder {
     color: rgb(10, 154, 168);
     transition: color 0.3s ease;
+}
+
+#clearFilters {
+    margin-top: 20px;
 }
