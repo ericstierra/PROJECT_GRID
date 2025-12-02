@@ -4,17 +4,30 @@
         <span class="navbar-toggler-icon shadow-lg "></span>
     </button>
     <!-- Navbar-content -->
-    <div class="navbar-collapse navbar ">
+    <div class="navbar-collapse navbar">
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown ">
-                <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                    <img src="../assets/images/atimonan_seal.png" class="avatar img-fluid rounded" alt="">
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow-lg">
-                    <a href="#" class="dropdown-item">Profile</a>
-                    <!-- <a href="_settings.html" class="dropdown-item">Settings</a> -->
-                    <div class="dropdown-divider"></div>
-                    <a href="login.html" class="dropdown-item">Logout</a>
+            <li class="nav-item dropdown">
+                <div data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                    <img src="../assets/images/atimonan_seal.png" class="avatar img-fluid rounded" alt="User Image">
+                    <btn class="p-xl-1 d-md-inline" id="name-dd">Bryan Paul Opeña</btn>
+                </div>     
+                        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end" data-bs-popper="static" id="dropdown-menu">
+                            <!--begin::User Image-->
+                            <li class="user-header" id="Profile-name" >
+                                <img src="../assets/images/atimonan_seal.png" class="avatar img-fluid rounded-circle- shadow" alt="User Image" id="avatar-dd" />
+                                <p class="">
+                                    BRYAN PAUL OPEÑA <br>
+                                    Admin
+                                    <br><small>Member since 2025</small>
+                                </p>
+                            </li>
+
+                            <li class="user-footer">
+                                <a href="#" class="btn btn-default btn-flat float-start m-2" id="Profile-btn">Profile</a> 
+                                <a href="login.html" class="btn btn-default btn-flat float-end m-2" id="Signout-btn">Sign out</a>
+                            </li>
+                            <!--end::Menu Footer-->
+                        </ul>
                 </div>
             </li>
         </ul>
