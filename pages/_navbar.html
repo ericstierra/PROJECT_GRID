@@ -6,30 +6,32 @@
     <!-- Navbar-content -->
     <div class="navbar-collapse navbar">
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-                <div data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                    <img src="../assets/images/atimonan_seal.png" class="avatar img-fluid rounded" alt="User Image">
-                    <btn class="p-xl-1 d-md-inline" id="name-dd">Bryan Paul Opeña</btn>
-                </div>     
-                        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end" data-bs-popper="static" id="dropdown-menu">
-                            <!--begin::User Image-->
-                            <li class="user-header" id="Profile-name" >
-                                <img src="../assets/images/atimonan_seal.png" class="avatar img-fluid rounded-circle- shadow" alt="User Image" id="avatar-dd" />
-                                <p class="">
-                                    BRYAN PAUL OPEÑA <br>
-                                    Admin
-                                    <br><small>Member since 2025</small>
-                                </p>
-                            </li>
+            <!-- User dropdown -->
+      <li class="nav-item dropdown">
+        <a class="d-flex align-items-center text-decoration-none" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="../assets/images/atimonan_seal.png" alt="User avatar" class="rounded-circle me-2" style="width:40px; height:40px; object-fit:cover;">
+          <div class="d-none d-sm-block text-start">
+            <div class="fw-semibold" id="name-dd">Bryan Paul Opeña</div>
+            <div class="small text-muted">Admin</div>
+          </div>
+        </a>
 
-                            <li class="user-footer">
-                                <a href="#" class="btn btn-default btn-flat float-start m-2" id="Profile-btn">Profile</a> 
-                                <a href="login.html" class="btn btn-default btn-flat float-end m-2" id="Signout-btn">Sign out</a>
-                            </li>
-                            <!--end::Menu Footer-->
-                        </ul>
-                </div>
-            </li>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
+          <li class="px-3 py-2">
+            <div class="d-flex align-items-center">
+              <img src="../assets/images/atimonan_seal.png" alt="avatar" class="rounded-circle me-2" style="width:48px; height:48px; object-fit:cover;">
+              <div>
+                <div class="fw-bold">BRYAN PAUL OPEÑA</div>
+                <div class="small text-muted">Admin — Member since 2025</div>
+              </div>
+            </div>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" id="Profile-btn"><i class="bi bi-person me-2"></i>Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li class="px-3">
+            <a href="login.html" class="btn btn-outline-danger w-100" id="Signout-btn"><i class="bi bi-box-arrow-right me-2"></i>Sign out</a>
+          </li>
         </ul>
     </div>
 </nav>
