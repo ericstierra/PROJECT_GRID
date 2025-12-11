@@ -1,114 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login | Project GRID</title>
-        <link rel="shortcut icon" href="../assets/images/pgrid_logo.png" type="image/x-icon">
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row vh-100">
-                <!-- Left Branding Column ito -->
-                <!-- This column is hidden on screens smaller than medium (d-none d-md-flex) -->
-                <div class="col-md-7 col-lg-8 d-none d-md-flex flex-column justify-content-between p-5 text-white" 
-                     style="background: url('../assets/images/featured-photo.jpg') no-repeat center center; background-size: cover; position: relative;">
-            
-                     <!-- Ito ay Overlay for text readability -->
-                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);"></div>
-                    
-                    <!-- Content on top ng overlay -->
-                    <div style="position: relative; z-index: 1;">
-                        <h1 class="display-4 fw-bold">Project GRID</h1>
-                        <p class="lead">Geolocation-Ready Incident Database for MDRRMO Atimonan</p>
-                        <ul class="list-unstyled mt-4">
-                            <li class="d-flex align-items-start mb-3">
-                                <i class="bi bi-database-check h4 me-3"></i>
-                                <span>A centralized database and monitoring dashboard for incident reports.</span>
-                            </li>
-                            <li class="d-flex align-items-start mb-3">
-                                <i class="bi bi-geo-alt-fill h4 me-3"></i>
-                                <span>Organize, store, and visualize reports with geolocation data.</span>
-                            </li>
-                            <li class="d-flex align-items-start">
-                                <i class="bi-graph-up-arrow h4 me-3"></i>
-                                <span>Enable faster situational awareness for efficient emergency response and disaster risk reduction and management.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div style="position: relative; z-index: 1;">
-                        <img src="../assets/images/atimonan_seal.png" class="footer-img me-3" alt="Atimonan Seal" style="height: 70px;">
-                        <img src="../assets/images/mdrrmo_logo.png" class="footer-img" alt="MDRRMO Atimonan Logo" style="height: 70px;">
-                    </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Project GRID</title>
+    <link rel="shortcut icon" href="../assets/images/pgrid_logo.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+            <!-- Left Branding Column ito -->
+            <!-- This column is hidden on screens smaller than medium (d-none d-md-flex) -->
+            <div class="col-md-7 col-lg-8 d-none d-md-flex flex-column justify-content-between p-5 text-white"
+                style="background: url('../assets/images/featured-photo.jpg') no-repeat center center; background-size: cover; position: relative;">
+
+                <!-- Ito ay Overlay for text readability -->
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);">
                 </div>
 
-                <!-- Right Login Form Column -->
-                <div class="col-12 col-md-5 col-lg-4 d-flex align-items-center justify-content-center bg-light">
-                    <div class="w-100 p-4 p-lg-5">
-                        <div class="text-center mb-4">
-                            <img class="logo mb-2" src="../assets/images/pgrid_logo.png" alt="Logo">
-                            <h2 class="h4 mb-0">Project<span class="text-primary">GRID</span></h2>
-                            <p class="text-muted">MDRRMO Atimonan</p>
+                <!-- Content on top ng overlay -->
+                <div style="position: relative; z-index: 1;">
+                    <h1 class="display-4 fw-bold">Project GRID</h1>
+                    <p class="lead">Geolocation-Ready Incident Database for MDRRMO Atimonan</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="d-flex align-items-start mb-3">
+                            <i class="bi bi-database-check h4 me-3"></i>
+                            <span>A centralized database and monitoring dashboard for incident reports.</span>
+                        </li>
+                        <li class="d-flex align-items-start mb-3">
+                            <i class="bi bi-geo-alt-fill h4 me-3"></i>
+                            <span>Organize, store, and visualize reports with geolocation data.</span>
+                        </li>
+                        <li class="d-flex align-items-start">
+                            <i class="bi-graph-up-arrow h4 me-3"></i>
+                            <span>Enable faster situational awareness for efficient emergency response and disaster risk
+                                reduction and management.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div style="position: relative; z-index: 1;">
+                    <img src="../assets/images/atimonan_seal.png" class="footer-img me-3" alt="Atimonan Seal"
+                        style="height: 70px;">
+                    <img src="../assets/images/mdrrmo_logo.png" class="footer-img" alt="MDRRMO Atimonan Logo"
+                        style="height: 70px;">
+                </div>
+            </div>
+
+            <!-- Right Login Form Column -->
+            <div class="col-12 col-md-5 col-lg-4 d-flex align-items-center justify-content-center bg-light">
+                <div class="w-100 p-4 p-lg-5">
+                    <div class="text-center mb-4">
+                        <img class="logo mb-2" src="../assets/images/pgrid_logo.png" alt="Logo">
+                        <h2 class="h4 mb-0">Project<span class="text-primary">GRID</span></h2>
+                        <p class="text-muted">MDRRMO Atimonan</p>
+                    </div>
+
+                    <h5 class="fw-normal mb-3 text-center">Sign into your account</h5>
+
+                    <!-- Login Form -->
+                    <form action="#" method="POST" id="login-form">
+                        <div class="mb-3">
+                            <label for="username" class="form-label visually-hidden">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                                <input type="text" id="username" name="username" class="form-control form-control-lg"
+                                    placeholder="Username" required>
+                            </div>
                         </div>
-
-                        <h5 class="fw-normal mb-3 text-center">Sign into your account</h5>
-
-                        <!-- Login Form -->
-                        <form action="#" method="POST" id="login-form" >
-                            <div class="mb-3">
-                                <label for="username" class="form-label visually-hidden">Username</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                                    <input type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Username" required>
-                                </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label visually-hidden">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                                <input type="password" id="password" name="password"
+                                    class="form-control form-control-lg" placeholder="Password" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label visually-hidden">Password</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-                                    <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Password" required>
-                                </div>
-                            </div>
-                            <div class="d-grid mb-4">
-                                <button type="submit" class="btn btn-primary btn-lg">Login</button>
-                                <!-- <a href="app.html" role="button" class="btn btn-primary btn-lg">Login</a> -->
-                            </div>
-                        </form>
+                        </div>
+                        <div class="d-grid mb-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                            <!-- <a href="app.html" role="button" class="btn btn-primary btn-lg">Login</a> -->
+                        </div>
+                    </form>
 
-                        <p class="text-center">No account yet? <a href="#">Request an account now</a></p>
-                        <hr>
-                        <p class="small text-center text-muted mt-4">
-                            &copy; 2025. All rights reserved.
-                            <br>
-                            Developed by BSCS 4th Year Students - Group 11
-                            <br>
-                            A.Y. 2025-2026
-                            <br>
-                            Quezonian Educational College Inc.
-                        </p>
-                    </div>
+                    <p class="text-center">No account yet? <a href="#">Request an account now</a></p>
+                    <hr>
+                    <p class="small text-center text-muted mt-4">
+                        &copy; 2025. All rights reserved.
+                        <br>
+                        Developed by BSCS 4th Year Students - Group 11
+                        <br>
+                        A.Y. 2025-2026
+                        <br>
+                        Quezonian Educational College Inc.
+                    </p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Toast container for notifications -->
-        <div class="toast-container position-fixed top-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img src="../assets/images/pgrid_logo.png" class="rounded me-2" alt="Logo" style="width: 20px;">
-                    <strong class="me-auto">Project GRID</strong>
-                    <small>Just now</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body"></div>
+    <!-- Toast container for notifications -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="../assets/images/pgrid_logo.png" class="rounded me-2" alt="Logo" style="width: 20px;">
+                <strong class="me-auto">Project GRID</strong>
+                <small>Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
+            <div class="toast-body"></div>
         </div>
+    </div>
 
-        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/login.js"></script>
 
-    </body>
+</body>
+
 </html>
