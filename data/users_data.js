@@ -5,7 +5,7 @@ export const user_data = [
     username: "erictierra",
     email: "eric.tierra@example.com",
     role: "Admin",
-    password: "EricTierra123",
+    password: "EricTierra123!",
     status: "Active"
   },
   {
