@@ -2,55 +2,64 @@ export const user_data = [
   {
     id: 1,
     fullName: "Eric Tierra",
-    username: "sambag",
-    email: "eric.tierra@gmail.com",
+    username: "erictierra",
+    email: "eric.tierra@example.com",
     role: "Admin",
-    password: "P@ssword123",
+    password: "EricTierra123",
     status: "Active"
   },
   {
     id: 2,
-    fullName: "Byron Glenn Anda",
-    username: "byronglenn",
-    email: "byron.anda@example.com",
+    fullName: "Bryan Paul Opena",
+    username: "bryanpaulopena",
+    email: "bryan.paul.opena@example.com",
     role: "Admin",
-    password: "byron456",
+    password: "BryanPaulOpena123",
     status: "Active"
   },
   {
     id: 3,
-    fullName: "Sky Billanes",
-    username: "skybillanes",
-    email: "sky.billanes@example.com",
+    fullName: "Erodelin Oblipias",
+    username: "erodelinoblipias",
+    email: "erodelin.oblipias@example.com",
     role: "Admin",
-    password: "sky789",
+    password: "ErodelinOblipias123",
     status: "Active"
   },
   {
     id: 4,
-    fullName: "John Phillip Lasheras",
-    username: "johnlasheras",
-    email: "john.lasheras@example.com",
+    fullName: "Jana Alyssa Alba",
+    username: "janaalyssaalba",
+    email: "jana.alyssa.alba@example.com",
     role: "Encoder",
-    password: "john101",
+    password: "JanaAlyssaAlba123",
     status: "Active"
   },
   {
     id: 5,
-    fullName: "Elvis Uy",
-    username: "elvisuy",
-    email: "elvis.uy@example.com",
+    fullName: "Sherene Abanilla",
+    username: "shereneabanilla",
+    email: "sherene.abanilla@example.com",
     role: "Viewer",
-    password: "elvis202",
+    password: "ShereneAbanilla123",
     status: "Active"
   },
   {
     id: 6,
-    fullName: "Richard Argulla",
-    username: "richardargulla",
-    email: "richard.argulla@example.com",
+    fullName: "John Christopher Miranda",
+    username: "johnchristophermiranda",
+    email: "john.christopher.miranda@example.com",
     role: "Viewer",
-    password: "richard303",
+    password: "JohnChristopherMiranda123",
+    status: "Inactive"
+  },
+  {
+    id: 7,
+    fullName: "John Victor Anda",
+    username: "johnvictoranda",
+    email: "john.victor.anda@example.com",
+    role: "Viewer",
+    password: "JohnVictorAnda123",
     status: "Inactive"
   }
 ];
