@@ -18,42 +18,6 @@
                         </tr>
                     </thead>
                     <tbody class="animate-rows" id="userTableBody">
-                        <tr>
-                            <td>Eric Tierra</td>
-                            <td>Admin</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                            <td><button class="btn btn-sm btn-outline-primary justify-content-center" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="bi bi-pencil-fill"></i> Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>Byron Glenn Anda</td>
-                            <td>Admin</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                            <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="bi bi-pencil-fill"></i> Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>Sky Billanes</td>
-                            <td>Admin</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                            <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="bi bi-pencil-fill"></i> Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>John Phillip Lasheras</td>
-                            <td>Encoder</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                            <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="bi bi-pencil-fill"></i> Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>Elvis Uy</td>
-                            <td>Viewer</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                            <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="bi bi-pencil-fill"></i> Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td>Richard Argulla</td>
-                            <td>Viewer</td>
-                            <td><span class="badge bg-danger">Inactive</span></td>
-                            <td><button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="bi bi-pencil-fill"></i> Edit</button></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -145,13 +109,82 @@
               </select>
             </div>
 
-            <!-- Save Changes Button -->
-            <div class="d-grid">
-              <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
+
+  <script type="module">
+    import { user_data } from '../data/users_data.js';
+
+    const tbody = document.getElementById('userTableBody');
+    let editingUserId = null;
+
+    function renderTable() {
+      tbody.innerHTML = '';
+      user_data.forEach(user => {
+        const statusClass = user.status === 'Active' ? 'success' : 'danger';
+        const row = `
+          <tr>
+            <td>${user.fullName}</td>
+            <td>${user.role}</td>
+            <td><span class="badge bg-${statusClass}">${user.status}</span></td>
+            <td><button class="btn btn-sm btn-outline-primary edit-btn" data-id="${user.id}" data-bs-toggle="modal" data-bs-target="#editUserModal"><i class="bi bi-pencil-fill"></i> Edit</button></td>
+          </tr>
+        `;
+        tbody.innerHTML += row;
+      });
+    }
+
+    // Initial render
+    renderTable();
+
+    // Add user
+    document.getElementById('addUserForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fullName = document.getElementById('fullName').value;
+      const role = document.getElementById('userType').value;
+      const status = document.getElementById('status').value;
+      const newId = Math.max(...user_data.map(u => u.id)) + 1;
+      const username = fullName.toLowerCase().replace(/\s+/g, '') + newId; // simple username generation
+      const password = 'default123'; // default password
+      user_data.push({ id: newId, fullName, username, role, password, status });
+      renderTable();
+      this.reset();
+      bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+    });
+
+    // Edit user - populate modal
+    tbody.addEventListener('click', function(e) {
+      if (e.target.closest('.edit-btn')) {
+        const id = parseInt(e.target.closest('.edit-btn').dataset.id);
+        const user = user_data.find(u => u.id === id);
+        if (user) {
+          editingUserId = id;
+          document.getElementById('editFullName').value = user.fullName;
+          document.getElementById('editUserRole').value = user.role;
+          document.getElementById('editStatus').value = user.status;
+        }
+      }
+    });
+
+    // Save edit
+    document.getElementById('editUserForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (editingUserId !== null) {
+        const user = user_data.find(u => u.id === editingUserId);
+        if (user) {
+          user.fullName = document.getElementById('editFullName').value;
+          user.role = document.getElementById('editUserRole').value;
+          user.status = document.getElementById('editStatus').value;
+          renderTable();
+          this.reset();
+          bootstrap.Modal.getInstance(document.getElementById('editUserModal')).hide();
+          editingUserId = null;
+        }
+      }
+    });
+  </script>
 

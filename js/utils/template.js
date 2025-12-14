@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const scripts = contentArea.querySelectorAll("script");
             scripts.forEach(script => {
                 const newScript = document.createElement("script");
+                newScript.type = script.type; // Preserve script type, e.g., "module"
                 if (script.src) {
                     newScript.src = script.src;
                 } else {

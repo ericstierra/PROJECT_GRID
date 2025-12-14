@@ -30,7 +30,73 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/template.js"></script>
-    <!-- Page-specific scripts will be loaded dynamically -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/utils/template.js"></script>
+    
+     <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            const authUser = JSON.parse(localStorage.getItem('sessionUser'));
+            const timeout = localStorage.getItem('sessionTimeout');
+
+            const logout = () => {
+                localStorage.removeItem('sessionUser');
+                localStorage.removeItem('sessionTimeout');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Session has expired.",
+                    footer: '<a href="#">Please login to continue using our application.</a>'
+                });
+                setTimeout(() => {
+                    window.location.href = './login.html';
+                }, 5000);
+            }
+
+            const isSessionValid = () => {
+                if (!timeout) return false;
+                if (Date.now() < Number(timeout)) {
+                    return true;
+                }
+            }
+
+            const checkSession = () => {
+                if (!authUser.isRemember && !isSessionValid())
+                    logout();
+            }
+
+            if (authUser && authUser.user) {
+                checkSession();
+            } else {
+                window.location.href = './login.html';
+            }
+
+            // Wait for navbar to be injected
+            const navbarContainer = document.getElementById('navbar-container');
+            const observer = new MutationObserver((mutations, obs) => {
+                const fullNames = document.querySelectorAll('.user-full-name');
+                const signoutBtn = document.querySelector('#sign-out');
+
+                if (fullNames.length > 0 && authUser && authUser.user) {
+                    fullNames.forEach(el => el.textContent = authUser.user.fullName);
+                    obs.disconnect();
+                }
+
+                if (signoutBtn) {
+                    signoutBtn.onclick = logout;
+                }
+            });
+
+            if (navbarContainer) {
+                observer.observe(navbarContainer, { childList: true, subtree: true });
+            }
+
+            ['mousemove', 'keydown', 'click'].forEach(e => {
+                document.addEventListener(e, () => {
+                    checkSession();
+                });
+            });
+        });
+    </script>
+    
 </body>
 </html>
