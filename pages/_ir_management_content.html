@@ -1,10 +1,15 @@
 <!-- Main content for IR Management -->
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
  <link rel="stylesheet" href="../css/ir_management.css">
 <div class="d-flex justify-content-between align-items-center mb-0 ">
     <h1 class="h3 mb-4 fade-header">IR Management</h1>
-    <button type="button" class="btn bounce-glow " data-bs-toggle="modal" data-bs-target="#addIrModal">
-        <i class="bi bi-plus-lg"></i> Add IR
-    </button> 
+    <div>
+        <button type="button" class="btn bounce-glow " data-bs-toggle="modal" data-bs-target="#addIrModal">
+            <i class="bi bi-plus-lg"></i> Add IR
+        </button> 
+    </div>
 </div>
 
 <!-- Table -->
@@ -22,105 +27,6 @@
                     </tr>
                 </thead>
                 <tbody class="animate-rows" id="irTableBody">
-                    <tr
-                        data-ir-id="IR-2025-001"
-                        data-ir-date="2025-10-23"
-                        data-ir-time="13:01H"
-                        data-ir-datetime="2025-10-23 13:01H"
-                        data-ir-nature="Road Crash"
-                        data-ir-barangay="Tagbakin"
-                        data-ir-latitude="14.123400"
-                        data-ir-longitude="121.123400"
-                        data-ir-description="A collision occurred on the national highway in Brgy. Tagbakin involving a motorcycle (Plate No. ABC-123) and a tricycle (Plate No. XYZ-456). The motorcycle rider sustained injuries."
-                        data-ir-actions="EMS dispatched; victim stabilized and transported to nearest hospital; PNP assisted with traffic control."
-                        data-ir-reported-by="John Phillip Lasheras"
-                        data-ir-remarks="Minor injuries reported"
-                        data-ir-photo="../images/ir-2025-001.jpg"
-                    >
-                        <td>IR-2025-001</td>
-                        <td>2025-10-23 13:01H</td>
-                        <td>Road Crash</td>
-                        <td>Tagbakin</td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-outline-info me-1" data-bs-toggle="modal" data-bs-target="#viewIrModal-IR-2025-001" title="View"><i class="bi bi-eye-fill"></i> View</button>
-                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editIrModal" title="Edit"><i class="bi bi-pencil-fill"></i> Edit</button>
-                        </td>
-                    </tr>
-
-                    <tr
-                        data-ir-id="IR-2025-002"
-                        data-ir-date="2025-10-24"
-                        data-ir-time="02:30H"
-                        data-ir-datetime="2025-10-24 02:30H"
-                        data-ir-nature="Fire Incident"
-                        data-ir-barangay="Zone 1 (Poblacion)"
-                        data-ir-latitude="14.130000"
-                        data-ir-longitude="121.130000"
-                        data-ir-description="A structural fire broke out at a residential property, likely due to faulty wiring. No fatalities reported."
-                        data-ir-actions="BFP responded and extinguished fire; MDRRMO assisted with evacuation and crowd control."
-                        data-ir-reported-by="JM De Torres"
-                        data-ir-remarks="Under investigation by BFP"
-                        data-ir-photo="../images/ir-2025-002.jpg"
-                    >
-                        <td>IR-2025-002</td>
-                        <td>2025-10-24 02:30H</td>
-                        <td>Fire Incident</td>
-                        <td>Zone 1 (Poblacion)</td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-outline-info me-1" data-bs-toggle="modal" data-bs-target="#viewIrModal-IR-2025-002" title="View"><i class="bi bi-eye-fill"></i> View</button>
-                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editIrModal" title="Edit"><i class="bi bi-pencil-fill"></i> Edit</button>
-                        </td>
-                    </tr>
-
-                    <tr
-                        data-ir-id="IR-2025-003"
-                        data-ir-date="2025-10-25"
-                        data-ir-time="18:00H"
-                        data-ir-datetime="2025-10-25 18:00H"
-                        data-ir-nature="Landslide"
-                        data-ir-barangay="San Andres Bundok"
-                        data-ir-latitude="14.200000"
-                        data-ir-longitude="121.200000"
-                        data-ir-description="Minor landslide partially blocking the provincial road after heavy rainfall."
-                        data-ir-actions="DPWH and MDRRMO deployed crews to clear debris; warning signs installed."
-                        data-ir-reported-by="Field Team"
-                        data-ir-remarks="Monitoring ongoing"
-                        data-ir-photo="../images/ir-2025-003.jpg"
-                    >
-                        <td>IR-2025-003</td>
-                        <td>2025-10-25 18:00H</td>
-                        <td>Landslide</td>
-                        <td>San Andres Bundok</td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-outline-info me-1" data-bs-toggle="modal" data-bs-target="#viewIrModal-IR-2025-003" title="View"><i class="bi bi-eye-fill"></i> View</button>
-                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editIrModal" title="Edit"><i class="bi bi-pencil-fill"></i> Edit</button>
-                        </td>
-                    </tr>
-
-                    <tr
-                        data-ir-id="IR-2025-004"
-                        data-ir-date="2025-10-26"
-                        data-ir-time="05:00H"
-                        data-ir-datetime="2025-10-26 05:00H"
-                        data-ir-nature="Flood"
-                        data-ir-barangay="Malinao Ilaya"
-                        data-ir-latitude="14.250000"
-                        data-ir-longitude="121.250000"
-                        data-ir-description="Flash flood due to overflowing river affected low-lying households; water reached knee height in affected areas."
-                        data-ir-actions="Pre-emptive evacuation conducted; temporary shelter set up at barangay hall."
-                        data-ir-reported-by="Community Report"
-                        data-ir-remarks="Residents returned after water subsided"
-                        data-ir-photo="../images/ir-2025-004.jpg"
-                    >
-                        <td>IR-2025-004</td>
-                        <td>2025-10-26 05:00H</td>
-                        <td>Flood</td>
-                        <td>Malinao Ilaya</td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-outline-info me-1" data-bs-toggle="modal" data-bs-target="#viewIrModal-IR-2025-004" title="View"><i class="bi bi-eye-fill"></i> View</button>
-                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editIrModal" title="Edit"><i class="bi bi-pencil-fill"></i> Edit</button>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -172,6 +78,15 @@
             <div class="col-md-6">
               <label for="irLongitude" class="form-label">Longitude</label>
               <input type="text" class="form-control" id="irLongitude" placeholder="e.g. 121.123456">
+            </div>
+            <div class="col-12">
+                <label class="form-label">Pin Location</label>
+                <div id="mapPicker" style="height: 300px; width: 100%; border-radius: 4px; border: 1px solid #dee2e6;"></div>
+                <small class="text-muted">Click on the map to set coordinates automatically.</small>
+            </div>
+            <div class="col-12">
+              <label for="irPhoto" class="form-label">Upload Photo / Evidence</label>
+              <input class="form-control" type="file" id="irPhoto" accept="image/*">
             </div>
             <div class="col-12">
               <label for="irDescription" class="form-label">Description / Details</label>
@@ -314,193 +229,118 @@
   </div>
 </div>
 
-<!-- Hard-coded View Modals (design-only, fields match DB structure) -->
+<script type="module">
+    import { incidentsData } from '../data/incidents_data.js';
 
-<!-- IR-2025-001 -->
-<div class="modal fade" id="viewIrModal-IR-2025-001" tabindex="-1" aria-labelledby="viewIrModalLabel-IR-2025-001" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content shadow-lg">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewIrModalLabel-IR-2025-001">Incident Report — IR-2025-001</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row g-2">
-          <div class="col-md-6"><strong>i. ID:</strong> <div class="text-muted">IR-2025-001</div></div>
-          <div class="col-md-3"><strong>ii. Date:</strong> <div class="text-muted">2025-10-23</div></div>
-          <div class="col-md-3"><strong>iii. Time:</strong> <div class="text-muted">13:01H</div></div>
+    const tableBody = document.getElementById('irTableBody');
 
-          <div class="col-md-6 mt-2"><strong>iv. Nature of Incident:</strong> <div class="text-muted">Road Crash</div></div>
-          <div class="col-md-6 mt-2"><strong>v. Barangay:</strong> <div class="text-muted">Tagbakin</div></div>
+    // 1. Render Table
+    function renderTable() {
+        tableBody.innerHTML = '';
+        incidentsData.forEach(ir => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${ir.ir_id}</td>
+                <td>${ir.date} ${ir.time}</td>
+                <td>${ir.nature_of_incident}</td>
+                <td>${ir.barangay}</td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-outline-info me-1 view-btn" data-id="${ir.id}" data-bs-toggle="modal" data-bs-target="#viewIrModal" title="View"><i class="bi bi-eye-fill"></i> View</button>
+                    <button class="btn btn-sm btn-outline-primary edit-btn" data-id="${ir.id}" data-bs-toggle="modal" data-bs-target="#editIrModal" title="Edit"><i class="bi bi-pencil-fill"></i> Edit</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
 
-          <div class="col-md-6 mt-2"><strong>vi. Latitude:</strong> <div class="text-muted">14.123400</div></div>
-          <div class="col-md-6 mt-2"><strong>vii. Longitude:</strong> <div class="text-muted">121.123400</div></div>
+        // Attach event listeners for View buttons
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.currentTarget.getAttribute('data-id'), 10);
+                const ir = incidentsData.find(i => i.id === id);
+                if (ir) populateViewModal(ir);
+            });
+        });
 
-          <div class="col-12 mt-3">
-            <strong>Photo / Evidence:</strong>
-            <div class="mt-2">
-              <img src="../images/ir-2025-001.jpg" alt="IR-2025-001 photo" class="img-fluid rounded shadow-sm" style="max-height:360px; width:100%; object-fit:cover;">
-            </div>
-          </div>
+        // Attach event listeners for Edit buttons
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.currentTarget.getAttribute('data-id'), 10);
+                const ir = incidentsData.find(i => i.id === id);
+                if (ir) populateEditModal(ir);
+            });
+        });
+    }
 
-          <div class="col-12 mt-3"><strong>viii. Description / Details:</strong>
-            <div class="text-muted mt-2">A collision occurred on the national highway in Brgy. Tagbakin involving a motorcycle and a tricycle. The motorcycle rider sustained injuries.</div>
-          </div>
+    // 2. Populate View Modal
+    function populateViewModal(ir) {
+        document.getElementById('viewIrId').textContent = ir.ir_id;
+        document.getElementById('viewIrDate').textContent = ir.date;
+        document.getElementById('viewIrTime').textContent = ir.time;
+        document.getElementById('viewIrNature').textContent = ir.nature_of_incident;
+        document.getElementById('viewIrBarangay').textContent = ir.barangay;
+        document.getElementById('viewIrLatitude').textContent = ir.latitude;
+        document.getElementById('viewIrLongitude').textContent = ir.longitude;
+        document.getElementById('viewIrDescription').textContent = ir.details;
+        document.getElementById('viewIrActions').textContent = ir.actions_taken;
+        document.getElementById('viewIrReportedBy').textContent = ir.reported_by;
+        document.getElementById('viewIrRemarks').textContent = ir.remarks;
+        
+        const photoEl = document.getElementById('viewIrPhoto');
+        if (ir.photo) {
+            photoEl.src = ir.photo;
+            photoEl.style.display = 'block';
+        } else {
+            photoEl.style.display = 'none';
+        }
+    }
 
-          <div class="col-12 mt-2"><strong>ix. Actions Taken:</strong>
-            <div class="text-muted mt-2">EMS dispatched; victim stabilized and transported to nearest hospital; PNP assisted with traffic control.</div>
-          </div>
+    // 3. Populate Edit Modal
+    function populateEditModal(ir) {
+        document.getElementById('editIrId').value = ir.ir_id || '';
+        document.getElementById('editIrDate').value = ir.date || '';
+        document.getElementById('editIrTime').value = ir.time || '';
+        document.getElementById('editIrNature').value = ir.nature_of_incident || '';
+        document.getElementById('editIrBarangay').value = ir.barangay || '';
+        document.getElementById('editIrLatitude').value = ir.latitude || '';
+        document.getElementById('editIrLongitude').value = ir.longitude || '';
+        document.getElementById('editIrDescription').value = ir.details || '';
+        document.getElementById('editIrActions').value = ir.actions_taken || '';
+        document.getElementById('editIrReportedBy').value = ir.reported_by || '';
+        document.getElementById('editIrRemarks').value = ir.remarks || '';
+    }
 
-          <div class="col-md-6 mt-2"><strong>x. Reported By:</strong> <div class="text-muted">John Phillip Lasheras</div></div>
+    // Initialize
+    renderTable();
 
-          <div class="col-12 mt-2"><strong>xi. Remarks:</strong>
-            <div class="text-muted mt-2">Minor injuries reported</div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-    </div>
-  </div>
-</div>
+    // Map Picker Logic
+    let mapPicker;
+    let marker;
 
-<!-- IR-2025-002 -->
-<div class="modal fade" id="viewIrModal-IR-2025-002" tabindex="-1" aria-labelledby="viewIrModalLabel-IR-2025-002" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content shadow-lg">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewIrModalLabel-IR-2025-002">Incident Report — IR-2025-002</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row g-2">
-          <div class="col-md-6"><strong>i. ID:</strong> <div class="text-muted">IR-2025-002</div></div>
-          <div class="col-md-3"><strong>ii. Date:</strong> <div class="text-muted">2025-10-24</div></div>
-          <div class="col-md-3"><strong>iii. Time:</strong> <div class="text-muted">02:30H</div></div>
+    const addIrModal = document.getElementById('addIrModal');
+    if (addIrModal) {
+        addIrModal.addEventListener('shown.bs.modal', () => {
+            if (!mapPicker) {
+                // Initialize map centered on Atimonan
+                if (typeof L !== 'undefined') {
+                    mapPicker = L.map('mapPicker').setView([14.003589, 121.919861], 13);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; OpenStreetMap contributors'
+                    }).addTo(mapPicker);
 
-          <div class="col-md-6 mt-2"><strong>iv. Nature of Incident:</strong> <div class="text-muted">Fire Incident</div></div>
-          <div class="col-md-6 mt-2"><strong>v. Barangay:</strong> <div class="text-muted">Zone 1 (Poblacion)</div></div>
+                    mapPicker.on('click', (e) => {
+                        const { lat, lng } = e.latlng;
+                        document.getElementById('irLatitude').value = lat.toFixed(6);
+                        document.getElementById('irLongitude').value = lng.toFixed(6);
 
-          <div class="col-md-6 mt-2"><strong>vi. Latitude:</strong> <div class="text-muted">14.130000</div></div>
-          <div class="col-md-6 mt-2"><strong>vii. Longitude:</strong> <div class="text-muted">121.130000</div></div>
-
-          <div class="col-12 mt-3">
-            <strong>Photo / Evidence:</strong>
-            <div class="mt-2">
-              <img src="../images/ir-2025-002.jpg" alt="IR-2025-002 photo" class="img-fluid rounded shadow-sm" style="max-height:360px; width:100%; object-fit:cover;">
-            </div>
-          </div>
-
-          <div class="col-12 mt-3"><strong>viii. Description / Details:</strong>
-            <div class="text-muted mt-2">A structural fire broke out at a residential property, likely due to faulty wiring. No fatalities reported.</div>
-          </div>
-
-          <div class="col-12 mt-2"><strong>ix. Actions Taken:</strong>
-            <div class="text-muted mt-2">BFP responded and extinguished fire; MDRRMO assisted with evacuation and crowd control.</div>
-          </div>
-
-          <div class="col-md-6 mt-2"><strong>x. Reported By:</strong> <div class="text-muted">JM De Torres</div></div>
-
-          <div class="col-12 mt-2"><strong>xi. Remarks:</strong>
-            <div class="text-muted mt-2">Under investigation by BFP</div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-    </div>
-  </div>
-</div>
-
-<!-- IR-2025-003 -->
-<div class="modal fade" id="viewIrModal-IR-2025-003" tabindex="-1" aria-labelledby="viewIrModalLabel-IR-2025-003" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content shadow-lg">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewIrModalLabel-IR-2025-003">Incident Report — IR-2025-003</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row g-2">
-          <div class="col-md-6"><strong>i. ID:</strong> <div class="text-muted">IR-2025-003</div></div>
-          <div class="col-md-3"><strong>ii. Date:</strong> <div class="text-muted">2025-10-25</div></div>
-          <div class="col-md-3"><strong>iii. Time:</strong> <div class="text-muted">18:00H</div></div>
-
-          <div class="col-md-6 mt-2"><strong>iv. Nature of Incident:</strong> <div class="text-muted">Landslide</div></div>
-          <div class="col-md-6 mt-2"><strong>v. Barangay:</strong> <div class="text-muted">San Andres Bundok</div></div>
-
-          <div class="col-md-6 mt-2"><strong>vi. Latitude:</strong> <div class="text-muted">14.200000</div></div>
-          <div class="col-md-6 mt-2"><strong>vii. Longitude:</strong> <div class="text-muted">121.200000</div></div>
-
-          <div class="col-12 mt-3">
-            <strong>Photo / Evidence:</strong>
-            <div class="mt-2">
-              <img src="../images/ir-2025-003.jpg" alt="IR-2025-003 photo" class="img-fluid rounded shadow-sm" style="max-height:360px; width:100%; object-fit:cover;">
-            </div>
-          </div>
-
-          <div class="col-12 mt-3"><strong>viii. Description / Details:</strong>
-            <div class="text-muted mt-2">Minor landslide partially blocking a provincial road after heavy rainfall.</div>
-          </div>
-
-          <div class="col-12 mt-2"><strong>ix. Actions Taken:</strong>
-            <div class="text-muted mt-2">DPWH and MDRRMO crews cleared debris; warning signs installed.</div>
-          </div>
-
-          <div class="col-md-6 mt-2"><strong>x. Reported By:</strong> <div class="text-muted">Field Team</div></div>
-
-          <div class="col-12 mt-2"><strong>xi. Remarks:</strong>
-            <div class="text-muted mt-2">Monitoring ongoing</div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-    </div>
-  </div>
-</div>
-
-<!-- IR-2025-004 -->
-<div class="modal fade" id="viewIrModal-IR-2025-004" tabindex="-1" aria-labelledby="viewIrModalLabel-IR-2025-004" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content shadow-lg">
-      <div class="modal-header">
-        <h5 class="modal-title" id="viewIrModalLabel-IR-2025-004">Incident Report — IR-2025-004</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row g-2">
-          <div class="col-md-6"><strong>i. ID:</strong> <div class="text-muted">IR-2025-004</div></div>
-          <div class="col-md-3"><strong>ii. Date:</strong> <div class="text-muted">2025-10-26</div></div>
-          <div class="col-md-3"><strong>iii. Time:</strong> <div class="text-muted">05:00H</div></div>
-
-          <div class="col-md-6 mt-2"><strong>iv. Nature of Incident:</strong> <div class="text-muted">Flood</div></div>
-          <div class="col-md-6 mt-2"><strong>v. Barangay:</strong> <div class="text-muted">Malinao Ilaya</div></div>
-
-          <div class="col-md-6 mt-2"><strong>vi. Latitude:</strong> <div class="text-muted">14.250000</div></div>
-          <div class="col-md-6 mt-2"><strong>vii. Longitude:</strong> <div class="text-muted">121.250000</div></div>
-
-          <div class="col-12 mt-3">
-            <strong>Photo / Evidence:</strong>
-            <div class="mt-2">
-              <img src="../images/ir-2025-004.jpg" alt="IR-2025-004 photo" class="img-fluid rounded shadow-sm" style="max-height:360px; width:100%; object-fit:cover;">
-            </div>
-          </div>
-
-          <div class="col-12 mt-3"><strong>viii. Description / Details:</strong>
-            <div class="text-muted mt-2">Flash flood due to an overflowing river affected several low-lying households. Water level reached knee height.</div>
-          </div>
-
-          <div class="col-12 mt-2"><strong>ix. Actions Taken:</strong>
-            <div class="text-muted mt-2">Pre-emptive evacuation; temporary shelter established at barangay hall.</div>
-          </div>
-
-          <div class="col-md-6 mt-2"><strong>x. Reported By:</strong> <div class="text-muted">Community Report</div></div>
-
-          <div class="col-12 mt-2"><strong>xi. Remarks:</strong>
-            <div class="text-muted mt-2">Residents returned home after water subsided.</div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
-    </div>
-  </div>
-</div>
-
+                        if (marker) marker.setLatLng(e.latlng);
+                        else marker = L.marker(e.latlng).addTo(mapPicker);
+                    });
+                }
+            }
+            // Fix for map rendering in modal
+            if (mapPicker) {
+                setTimeout(() => { mapPicker.invalidateSize(); }, 200);
+            }
+        });
+    }
+</script>

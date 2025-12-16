@@ -2,11 +2,13 @@
 <link rel="stylesheet" href="../css/incident_report.css">
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h1 class="h3 mb-0 fade-header">View Incident Reports</h1>
-    <div class="input-group search-bar" style="width: 250px;">
-        <input type="text" name="table_search" class="form-control" placeholder="Search...">
-        <button class="btn-search" type="button">
-            <i class="bi bi-search"></i>
-        </button>
+    <div class="d-flex align-items-center gap-2">
+        <div class="input-group search-bar" style="width: 250px;">
+            <input type="text" name="table_search" class="form-control" placeholder="Search...">
+            <button class="btn-search" type="button">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -77,28 +79,31 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="row g-3">
-          <div class="col-md-6"><strong>IR #:</strong> <div id="viewIrId" class="text-muted"></div></div>
-          <div class="col-md-6"><strong>Date & Time:</strong> <div id="viewIrDateTime" class="text-muted"></div></div>
-          <div class="col-md-6"><strong>Nature of Incident:</strong> <div id="viewIrNature" class="text-muted"></div></div>
-          <div class="col-md-6"><strong>Barangay:</strong> <div id="viewIrBarangay" class="text-muted"></div></div>
-          <div class="col-12">
+        <div class="row g-2">
+          <div class="col-md-6"><strong>IR Number / ID:</strong> <div id="viewIrId" class="text-muted"></div></div>
+          <div class="col-md-3"><strong>Date:</strong> <div id="viewIrDate" class="text-muted"></div></div>
+          <div class="col-md-3"><strong>Time:</strong> <div id="viewIrTime" class="text-muted"></div></div>
+          <div class="col-md-6 mt-2"><strong>Nature of Incident:</strong> <div id="viewIrNature" class="text-muted"></div></div>
+          <div class="col-md-6 mt-2"><strong>Barangay:</strong> <div id="viewIrBarangay" class="text-muted"></div></div>
+          <div class="col-md-6 mt-2"><strong>Latitude:</strong> <div id="viewIrLatitude" class="text-muted"></div></div>
+          <div class="col-md-6 mt-2"><strong>Longitude:</strong> <div id="viewIrLongitude" class="text-muted"></div></div>
+
+          <div class="col-12 mt-3">
             <strong>Photo / Evidence:</strong>
             <div class="mt-2">
               <img id="viewIrPhoto" src="" alt="Incident photo" class="img-fluid rounded shadow-sm" style="max-height:360px; width:100%; object-fit:cover;">
             </div>
           </div>
-          <div class="col-12">
-            <strong>Description / Details:</strong>
-            <div id="viewIrDescription" class="text-wrap text-muted mt-2"></div>
+
+          <div class="col-12 mt-3"><strong>Description / Details:</strong>
+            <div id="viewIrDescription" class="text-muted mt-2"></div>
           </div>
-          <div class="col-12">
-            <strong>Actions Taken:</strong>
-            <div id="viewIrActions" class="text-wrap text-muted mt-2"></div>
+          <div class="col-12 mt-2"><strong>Actions Taken:</strong>
+            <div id="viewIrActions" class="text-muted mt-2"></div>
           </div>
-          <div class="col-12">
-            <strong>Remarks:</strong>
-            <div id="viewIrRemarks" class="text-wrap text-muted mt-2"></div>
+          <div class="col-md-6 mt-2"><strong>Reported By:</strong> <div id="viewIrReportedBy" class="text-muted"></div></div>
+          <div class="col-12 mt-2"><strong>Remarks:</strong>
+            <div id="viewIrRemarks" class="text-muted mt-2"></div>
           </div>
         </div>
       </div>
@@ -110,4 +115,61 @@
 </div>
 
 <!-- page-specific script to populate view modal -->
-<script type="module" src="../js/utils/incident_reports.js"></script>
+<script type="module">
+    import { incidentsData } from '../data/incidents_data.js';
+
+    const tableBody = document.getElementById('incidentTableBody');
+
+    // 1. Render Table
+    function renderTable() {
+        tableBody.innerHTML = '';
+        incidentsData.forEach(ir => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${ir.ir_id}</td>
+                <td>${ir.date} ${ir.time}</td>
+                <td>${ir.nature_of_incident}</td>
+                <td>${ir.barangay}</td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-outline-info view-btn" data-id="${ir.id}" data-bs-toggle="modal" data-bs-target="#viewIncidentModal" title="View"><i class="bi bi-eye-fill"></i> View</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        // Attach event listeners for View buttons
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.currentTarget.getAttribute('data-id'), 10);
+                const ir = incidentsData.find(i => i.id === id);
+                if (ir) populateViewModal(ir);
+            });
+        });
+    }
+
+    // 2. Populate View Modal
+    function populateViewModal(ir) {
+        document.getElementById('viewIrId').textContent = ir.ir_id;
+        document.getElementById('viewIrDate').textContent = ir.date;
+        document.getElementById('viewIrTime').textContent = ir.time;
+        document.getElementById('viewIrNature').textContent = ir.nature_of_incident;
+        document.getElementById('viewIrBarangay').textContent = ir.barangay;
+        document.getElementById('viewIrLatitude').textContent = ir.latitude;
+        document.getElementById('viewIrLongitude').textContent = ir.longitude;
+        document.getElementById('viewIrDescription').textContent = ir.details;
+        document.getElementById('viewIrActions').textContent = ir.actions_taken;
+        document.getElementById('viewIrReportedBy').textContent = ir.reported_by;
+        document.getElementById('viewIrRemarks').textContent = ir.remarks;
+        
+        const photoEl = document.getElementById('viewIrPhoto');
+        if (ir.photo) {
+            photoEl.src = ir.photo;
+            photoEl.style.display = 'block';
+        } else {
+            photoEl.style.display = 'none';
+        }
+    }
+
+    // Initialize
+    renderTable();
+</script>

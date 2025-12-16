@@ -6,13 +6,14 @@ export const incidentsData = [
     time: "14:30:00",
     nature_of_incident: "Fire",
     barangay: "Tagbakin",
-    latitude: 14.0036,
-    longitude: 121.9250,
-    details: "Residential fire started in the kitchen due to electrical fault.",
-    actions_taken: "Firefighters responded, extinguished the fire, evacuated residents.",
+    latitude: 13.994136,
+    longitude: 121.911364,
+    details: "Residential fire in Brgy. Tagbakin involving a semi-concrete house. Cause determined to be electrical wiring.",
+    actions_taken: "BFP Atimonan conducted fire suppression and overhaul operations. MDRRMO assisted in crowd control and medical standby. Atimonan PNP secured the perimeter for investigation.",
     added_by: 1,
     reported_by: "Juan Dela Cruz",
-    remarks: "Resolved"
+    remarks: "Resolved",
+    photo: "../assets/images/uploads/IR-0001.png"
   },
   {
     id: 2,
@@ -21,13 +22,14 @@ export const incidentsData = [
     time: "09:15:00",
     nature_of_incident: "Flood",
     barangay: "Malinao Ilaya",
-    latitude: 14.0050,
-    longitude: 121.9200,
-    details: "Heavy rainfall caused flooding in low-lying areas.",
-    actions_taken: "Rescue teams deployed, sandbags distributed, residents relocated.",
+    latitude: 14.002607,
+    longitude: 121.838075,
+    details: "Flash flood in Brgy. Malinao Ilaya reaching waist level due to heavy downpour affecting low-lying households.",
+    actions_taken: "MDRRMO led the rescue and evacuation operations. MSWDO conducted relief distribution and damage assessment. Municipal Engineering Office inspected infrastructure damages.",
     added_by: 2,
     reported_by: "Maria Santos",
-    remarks: "Resolved"
+    remarks: "Resolved",
+    photo: "../assets/images/uploads/IR-0002.png"
   },
   {
     id: 3,
@@ -36,13 +38,14 @@ export const incidentsData = [
     time: "18:45:00",
     nature_of_incident: "Road Crash",
     barangay: "San Isidro",
-    latitude: 14.0020,
-    longitude: 121.9300,
-    details: "Collision between two motorcycles at intersection.",
-    actions_taken: "Ambulance dispatched, traffic control implemented, drivers assisted.",
+    latitude: 13.992225,
+    longitude: 121.892422,
+    details: "Vehicular accident involving a motorcycle and a tricycle along the national highway in Brgy. San Isidro.",
+    actions_taken: "MDRRMO and BFP Atimonan responded for emergency medical assistance. Victim transported to Doña Marta Hospital. Atimonan PNP conducted on-site traffic investigation.",
     added_by: 3,
     reported_by: "Pedro Reyes",
-    remarks: "Resolved"
+    remarks: "Resolved",
+    photo: "../assets/images/uploads/IR-0003.png"
   },
   {
     id: 4,
@@ -51,13 +54,14 @@ export const incidentsData = [
     time: "22:00:00",
     nature_of_incident: "Landslide",
     barangay: "Angeles",
-    latitude: 14.0045,
-    longitude: 121.9265,
-    details: "Elderly resident experiencing chest pain.",
-    actions_taken: "EMS responded, patient transported to hospital.",
+    latitude: 13.998795,
+    longitude: 121.927295,
+    details: "Soil erosion blocking the barangay road in Brgy. Angeles following continuous rain.",
+    actions_taken: "MDRRMO conducted initial assessment. Municipal Engineering Office deployed clearing team. Municipal Agriculture Office assessed damage to nearby crops.",
     added_by: 4,
     reported_by: "Ana Lopez",
-    remarks: "Resolved"
+    remarks: "Resolved",
+    photo: "../assets/images/uploads/IR-0004.png"
   },
   {
     id: 5,
@@ -65,14 +69,15 @@ export const incidentsData = [
     date: "2023-10-20",
     time: "16:20:00",
     nature_of_incident: "Road Crash",
-    barangay: "Zone I-Poblacion",
-    latitude: 14.0010,
-    longitude: 121.9220,
-    details: "Burglary at local store, valuables stolen.",
-    actions_taken: "Police notified, investigation initiated, security measures advised.",
+    barangay: "Lumutan",
+    latitude: 13.977839,
+    longitude: 121.982143,
+    details: "Multiple vehicle collision involving a van and a jeepney in Brgy. Lumutan.",
+    actions_taken: "MDRRMO and BFP Atimonan extracted trapped passengers and provided first aid. Atimonan PNP managed traffic and conducted investigation.",
     added_by: 5,
     reported_by: "Store Owner",
-    remarks: "Pending"
+    remarks: "Pending",
+    photo: "../assets/images/uploads/IR-0005.png"
   },
   {
     id: 6,
@@ -80,13 +85,14 @@ export const incidentsData = [
     date: "2023-10-25",
     time: "11:10:00",
     nature_of_incident: "Fire",
-    barangay: "Zone II-Poblacion",
-    latitude: 14.0060,
-    longitude: 121.9280,
-    details: "Electrical fault caused widespread power outage.",
-    actions_taken: "Utility company contacted, temporary generators provided.",
+    barangay: "Manggalayan Labak",
+    latitude: 13.968186,
+    longitude: 121.923327,
+    details: "Grass fire in Brgy. Manggalayan Labak spreading towards residential area.",
+    actions_taken: "BFP Atimonan responded and performed fire suppression. MDRRMO provided water tanker support. Atimonan PNP assisted in crowd control.",
     added_by: 6,
     reported_by: "Barangay Captain",
-    remarks: "Resolved"
+    remarks: "Resolved",
+    photo: "../assets/images/uploads/IR-0006.png"
   }
 ];

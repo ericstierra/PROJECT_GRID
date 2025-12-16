@@ -1,115 +1,113 @@
-/* Standalone monitoring page styles (updated with map/chart specifics) */
-
+/* ---------- Basic Admin-like Layout ---------- */
 :root{
-    --bg:#0e0e0f;
-    --card:#171717;
-    --muted:#9aa0a6;
-    --accent-pink:#d63384;
-    --accent-blue:#0d6efd;
-    --accent-cyan:#0dcaf0;
-    --accent-green:#20c997;
+  --bg:#0b0d10;
+  --panel:#121416;
+  --muted:#9aa0a6;
+  --accent:#0d6efd;
+  --card-border:#222428;
 }
 
-html,body{height:100%}
-body{
-    margin:0;
-    background:#121212;
-    color:#e6eef2;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    -webkit-font-smoothing:antialiased;
+html,body { height:100%; background:var(--bg); color:#e9eef2; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+
+/* Sidebar */
+.sidebar {
+  width:260px;
+  background: linear-gradient(180deg,#0f1113 0%, #0a0b0c 100%);
+  border-right:1px solid var(--card-border);
+  min-height:100vh;
+  padding:12px;
+  position:fixed;
+  left:0; top:0; bottom:0;
+  overflow:auto;
+}
+.main-content {
+  margin-left:260px;
 }
 
-/* header */
-.monitoring-header{
-    border-bottom:1px solid #262626;
-    padding:10px 0;
-    background:linear-gradient(180deg, rgba(0,0,0,0.25), transparent);
+/* Header */
+.topbar {
+  height:64px;
+  background: linear-gradient(90deg,#0c0d10,#0b0c0e);
+  border-bottom:1px solid var(--card-border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 18px;
+  position:sticky; top:0; z-index:1050;
+}
+.brand { font-weight:600; color:#fff; letter-spacing:.2px; }
+
+/* Page container */
+.page-container {
+  display:flex;
+  gap:18px;
+  padding:18px;
+  align-items:flex-start;
 }
 
-/* badges */
-.stat-badge{
-    padding:10px 14px;
-    border-radius:6px;
-    min-width:120px;
+/* Left (filters + incidents) */
+.panel {
+  background:linear-gradient(180deg,#111315,#0f1113);
+  border:1px solid var(--card-border);
+  border-radius:10px;
+  padding:12px;
+}
+.panel h5 { color:#fff; margin-bottom:8px; }
+.scroll-y { max-height:calc(100vh - 200px); overflow:auto; padding-right:6px; }
+
+/* Map column */
+#map {
+  width:100%;
+  height:calc(100vh - 140px);
+  border-radius:10px;
+  border:1px solid var(--card-border);
+  overflow:hidden;
+}
+.map-controls {
+  position:absolute; z-index:1200; left:16px; top:86px;
+  display:flex; flex-direction:column; gap:8px;
 }
 
-/* cards */
-.monitor-card, .card {
-    background:var(--card);
-    border:1px solid #262626;
-    color:var(--muted);
-}
-.monitor-card .card-body { padding:16px; }
-
-/* list group items */
-.list-group-item-dark{
-    background:#1d1d1d;
-    border:1px solid #2b2b2b;
-    color:#e6eef2;
-}
-.list-group-item-dark .small{ color:var(--muted); }
-
-/* map placeholder */
-#mapPlaceholder{
-    background:#0b0b0b center/cover no-repeat;
-    min-height:520px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
+.map-controls .btn {
+  background:rgba(255,255,255,0.06);
+  color:#fff; border:1px solid rgba(255,255,255,0.04);
+  width:40px; height:40px; display:flex; align-items:center; justify-content:center;
+  border-radius:8px;
 }
 
-/* leaflet container should fill */
-.leaflet-container { height:100%; width:100%; }
+/* Right column */
+.right-col { width:320px; }
 
-/* overlay icon/text inside placeholder (used before map tiles load) */
-.map-overlay{ color:#9aa0a6; opacity:0.95; }
-
-/* custom zoom control group */
-.map-zoom-controls{
-    position:absolute;
-    left:12px;
-    top:12px;
-    z-index:20;
-    display:flex;
-    flex-direction:column;
-    gap:6px;
+/* Incident item */
+.incident-item {
+  background:#141618; border:1px solid #2a2c2f; padding:10px; border-radius:8px; margin-bottom:10px;
 }
+.incident-item small { color:var(--muted); }
 
-/* small faux charts on right */
-.chart-mini .chart-bar{ width:14%; }
-.chart-mini .bar{ width:100%; border-radius:4px; }
-.chart-mini .bar.short{ height:20px; }
-.chart-mini .bar.mid{ height:40px; }
-.chart-mini .bar.tall{ height:60px; }
-.bg-pink{ background:var(--accent-pink); }
-.bg-blue{ background:var(--accent-blue); }
-.bg-cyan{ background:var(--accent-cyan); }
-.bg-green{ background:var(--accent-green); }
+/* legend icons */
+.legend .dot { width:12px; height:12px; border-radius:50%; display:inline-block; margin-right:8px; vertical-align:middle; }
 
-/* type bars */
-.bar-type{ width:70%; margin:0 auto; border-radius:4px; }
-.bar-type.short{ height:20px; }
-.bar-type.mid{ height:55px; }
-.bar-type.tall{ height:80px; }
-
-/* month graph */
-.graph-month{
-    background:
-      linear-gradient(90deg, rgba(255,255,255,0.03) 0 10%, transparent 10%),
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.01) 0 4px, transparent 4px 8px);
-    border-radius:4px;
-    height:50px;
-}
-
-/* Chart canvas containers */
-#chartType, #chartBarangay { background: transparent; display:block; }
-
-/* utilities */
-.text-muted{ color:var(--muted) !important; }
-
-/* responsive tweaks */
+/* responsive */
 @media (max-width: 991px){
-    .chart-mini .chart-bar{ width:18%; }
-    #mapPlaceholder{ min-height:420px; }
+  .sidebar { position:relative; width:100%; min-height:auto; display:flex; gap:10px; overflow:hidden; }
+  .main-content { margin-left:0; }
+  .page-container { flex-direction:column; padding:12px; }
+  .right-col{ width:100%; }
+  #map { height:400px; }
 }
+
+/* small helpers */
+.muted { color:var(--muted); font-size:13px; }
+.kpi { font-size:20px; font-weight:700; }
+.card-title { font-size:14px; color:#dfe7eb; margin-bottom:6px; }
+
+/* Ensure canvas layout is stable and visible during initial render */
+.panel canvas { display: block; width: 100% !important; height: auto !important; }
+.right-col { position: relative; } /* ensure ResizeObserver sees stable box */
+
+/* Chart container: fixed height, canvas fills it absolutely to avoid layout jumps */
+.chart-container { position: relative; width: 100%; overflow: visible; }
+.chart-container.chart-lg { height: 150px; }
+.chart-container.chart-sm { height: 120px; }
+.chart-container canvas { position: absolute !important; top: 0; left: 0; width: 100% !important; height: 100% !important; }
+
+/* Prevent CSS/JS-driven transforms/animations from shifting canvases */
+.panel canvas, .chart-container canvas { transition: none !important; animation: none !important; transform: none !important; }
