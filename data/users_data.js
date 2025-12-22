@@ -16,7 +16,8 @@ export const user_data = [
     email: "bryan.paul.opena@example.com",
     role: "Admin",
     password: "BryanPaulOpena@123",
-    status: "Active"
+    status: "Active",
+    photo: "../assets/images/user_photos/bry.png"
   },
   {
     id: 3,
