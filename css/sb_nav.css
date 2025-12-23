@@ -1,5 +1,24 @@
 /* Replace font and define a professional orange/blue palette */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+/* Import a Google Font */
+@import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* responsive */
+@media (max-width: 767.98px) {
+    #sidebar {
+        margin-left: -70px; /* Start with the collapsed width hidden */
+    }
+    #sidebar.expand {
+        width: 260px;
+        min-width: 260px;
+        margin-left: 0; /* Bring it into view when expanded */
+    }
+}
 
 :root {
     --bg: #f4f7fb;                 /* page background */
@@ -16,15 +35,6 @@
     --transition-base: 0.35s;
 }
 
-/* Import a Google Font */
-@import url('https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap');
-
-::after,
-::before {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
 body {
     font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -168,17 +178,6 @@ body {
     outline-offset: 2px;
 }
 
-/* responsive */
-@media (max-width: 767.98px) {
-    #sidebar {
-        margin-left: -70px; /* Start with the collapsed width hidden */
-    }
-    #sidebar.expand {
-        width: 260px;
-        min-width: 260px;
-        margin-left: 0; /* Bring it into view when expanded */
-    }
-}
 
 #dropdown-menu {
 width: 350px;
