@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="../css/sb_nav.css">
     <link rel="stylesheet" href="../css/user_management.css">
     <link rel="stylesheet" href="../css/admin-lte/adminlte.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>u
 
 <body>
 
@@ -31,17 +33,17 @@
                 <!-- Content will be loaded here dynamica lly -->
             </main>
             <footer class="app-footer">
-            <!--begin::To the end-->
-            <div class="float-end d-none d-sm-inline">Developed by BSCS 4th Year Students - Group 11</div>
-            <!--end::To the end-->
-            <!--begin::Copyright-->
-            <strong>
-                Copyright &copy; 2025-2026&nbsp;
-                <a href="https://adminlte.io" class="text-decoration-none">QECI</a>.
-            </strong>
-            All rights reserved.
-            <!--end::Copyright-->
-        </footer>
+                <!--begin::To the end-->
+                <div class="float-end d-none d-sm-inline">Developed by BSCS 4th Year Students - Group 11</div>
+                <!--end::To the end-->
+                <!--begin::Copyright-->
+                <strong>
+                    Copyright &copy; 2025-2026&nbsp;
+                    <a href="https://adminlte.io" class="text-decoration-none">QECI</a>.
+                </strong>
+                All rights reserved.
+                <!--end::Copyright-->
+            </footer>
         </div>
     </div>
     <!--end::Footer-->
@@ -114,7 +116,7 @@
 
                 if (fullNames.length > 0 && authUser && authUser.user) {
                     fullNames.forEach(el => el.textContent = authUser.user.fullName);
-                    
+
                     if (userImages.length > 0 && authUser.user.photo) {
                         userImages.forEach(img => {
                             img.src = authUser.user.photo;
@@ -123,7 +125,7 @@
                             };
                         });
                     }
-                    
+
                     obs.disconnect();
                 }
 
